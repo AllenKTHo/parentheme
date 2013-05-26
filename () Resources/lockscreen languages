@@ -1,0 +1,27 @@
+ENGLISH
+tday=new Array("SU","MO","TU","WE","TH","FR","SA");
+tmonth=new Array("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"); 
+
+FRANÇAIS
+tday=new Array("DI","LU","MA","ME","JE","VE","SA"); 
+tmonth=new Array("JAN","FÉV","MAR","AVR","MAI","JUI","JUI","AOÛ","SEP","OCT","NOV","DÉC"); 
+
+DEUTSCH
+tday=new Array("MO","DI","MI","DO","FR","SA","SO");
+tmonth=new Array("JAN","FEB","MÄR","APR","MAI","JUN","JUL","AUG","SEP","OKT","NOV","DEZ"); 
+
+ITALIANA
+tday=new Array("DO","LU","MA","ME","GI","VE","SA");
+tmonth=new Array("GEN","FEB","MAR","APR","MAG","GIU","LUG","AGO","SET","OTT","NOV","DIC");
+
+ESPAÑOL
+tday=new Array("DO","LU","MA","MI","JU","VI","SA");
+tmonth=new Array("ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC");
+
+DANSK
+tday=new Array("SØ","MA","TI","ON","TO","FR","LØ"); 
+tmonth=new Array("JAN","FEB","MAR","APR","MAJ","JUN","JUL","AUG","SEP","OKT","NOV","DEC");
+
+YOUR LANGUAGE
+It's easy to make - just make sure you use two letters for weekdays and three for months.
+Please send to me so I can update font too (optimized so only the needed letters are included to make the file as small and fast loading as possible.
