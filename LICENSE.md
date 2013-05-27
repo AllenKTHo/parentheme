@@ -4,15 +4,10 @@ License
       To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 
-Sharing? Atribute like this
+Sharing? Attribute like this
 ---------------------------
 
-[![Creative Commons License](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
-
-() iPhone + iPad theme originally by [Andreas larsen](http://andreaslarsen.dk) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-nc-sa/3.0/).
-
-The original theme and resources can be found on [andreaslarsen.dk/parentheme](http://andreaslarsen.dk/parentheme).
-
+[() iPhone + iPad theme](http://andreaslarsen.dk/parentheme) originally by [Andreas larsen](http://andreaslarsen.dk), license [CC BY-NC-SA](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 Human readable
 --------------
