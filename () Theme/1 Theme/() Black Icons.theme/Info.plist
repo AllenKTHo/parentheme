@@ -3,7 +3,7 @@
 <plist version="1.0"><dict>
 
 <key>TimeStyle</key>
-<string>text-shadow: none</string>
+<string>text-shadow: none; colour:black</string>
 
 <key>CalendarIconDayStyle</key>
 <string>opacity: 0</string>
