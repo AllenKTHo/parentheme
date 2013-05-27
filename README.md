@@ -1,6 +1,12 @@
-Welcome! () is originally created by Andreas Larsen (me) but hopefully many will help. If you like this theme then please consider paying me a small amount [here](http://andreaslarsen.dk/parentheme/#paypal).
+Welcome!
+---
+      () is originally created by Andreas Larsen (me) but hopefully many will help. 
+      If you like this theme then please consider paying me a small amount.
+      Go to the wiki for instructions on how to install the theme, create icons etc.
+      
+[Donate](http://andreaslarsen.dk/parentheme/#paypal)
 
-The [wiki](https://github.com/andreaslarsen/parentheme/wiki) is also a good place to start!
+[Wiki](https://github.com/andreaslarsen/parentheme/wiki)
 
 
 License
