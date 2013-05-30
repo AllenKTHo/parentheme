@@ -40,13 +40,13 @@
 				if (MM < 10){MM = "0" + MM;}
 
 				timeEle.innerHTML = HH + ":" + MM;
+				
+				// calculate next minute tick ( seconds left + 10ms )
+				setTimeout(updateClock, (60 - (new Date()).getSeconds()) * 1000 + 10);
 			};
 
 			// excute on page load
 			window.onload = updateClock;
-
-			// excute every second
-			setInterval(updateClock, 1000);
 		</script>
 	</body>
 </html>
