@@ -1,61 +1,52 @@
 <html>
-<head>
-<style>
-#forecast { 
-	height: 220px ;}
-#widget {
-	margin-top: 100px ;
-	background: rgba(0, 0, 0, 0.0) ;
-	border-radius: 10px ;}
-</style>
-<style>
-@font-face {
-	font-family: 'source_code_problack';
-	src: url('sourcecodepro-black.svg#source_code_problack') format('svg');
-	}
-body {
-	background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg');
-	background-size:320px auto;margin:0;padding:0;width:320px;
-	font-family:'source_code_problack';
-	color:white;
-	}
-#time {
-	font-size: 87px;
-	margin: 0 0 -12px 10px;
-	}
-#date {
-	font-size: 48px;
-	margin: 0 0 0 10px;
-	} 
-#widget {
-	margin-left: auto; margin-right: auto;	
-	width: 280px;
-	padding-top: 2px;
-	}
-</style>
-</head>
-<body>
-    <div id="widget">
-	    <div id="time">
-		    <script type="text/javascript">
+	<head>
+		<style>
+			@font-face{font-family:source_code_problack;src:url(sourcecodepro-black.svg#source_code_problack) format(svg);}
+			body{background-image:url(/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg);background-size:320px auto;width:320px;font-family:source_code_problack;color:#FFF;margin:0;padding:0;}
+			#forecast{height:220px;}
+			#widget{margin-top:100px;margin-left:auto;margin-right:auto;width:280px;padding-top:2px;background:rgba(0,0,0,0.0);border-radius:10px;}
+			#time{font-size:87px;margin:0 0 -12px 10px;}
+			#date{font-size:48px;margin:0 0 0 10px;}
+		</style>
+	</head>
+	<body>
+		<div id="widget">
+			<div id="time"></div>
+			<div id="date"></div>
+			<iframe src="FUNKY2" frameborder="0" scrolling="no" id="forecast"></iframe>
+		</div>
+		<script type="text/javascript">
+			var WEEK = new Array("SU","MO","TU","WE","TH","FR","SA");
+			var MO = new Array("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC");
+				
+			var timeEle = document.getElementById('time');
+			var dateEle = document.getElementById('date');
+
+			var updateClock = function() {
+				// date function
+				var d = new Date();
+				var DAY = d.getDay();
+				var DATE = d.getDate();
+				var NTH = d.getMonth();
+
+				dateEle.innerHTML = WEEK[DAY] + " " + DATE + " " + MO[NTH];
+
+				// clock function
 				var d = new Date();
 				var HH = d.getHours();
-//					if (HH > 12){HH = HH - 12;}
-					if (HH < 10){HH = "0" + HH;}
+				// if (HH > 12){HH = HH - 12;} // 12 hour mode!
+				if (HH < 10){HH = "0" + HH;}
 				var MM = d.getMinutes();
-					if (MM < 10){MM = "0" + MM;}
-				document.write(HH + ":" + MM);
-			</script>
-		</div>
-	    <div id="date">
-		    <script type="text/javascript">
-			    var WEEK = new Array("SU","MO","TU","WE","TH","FR","SA");
-			    var MO = new Array("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"); 
-				var d = new Date();var DAY = d.getDay();var DATE = d.getDate();var NTH = d.getMonth();
-				document.write(WEEK[DAY] + " " + DATE + " " + MO[NTH]);
-			</script>
-		</div>
-<iframe src="FUNKY2" frameborder="0" scrolling="no" id="forecast"></iframe>
-	</div>
-</body>
+				if (MM < 10){MM = "0" + MM;}
+
+				timeEle.innerHTML = HH + ":" + MM;
+			};
+
+			// excute on page load
+			window.onload = updateClock;
+
+			// excute every second
+			setInterval(updateClock, 1000);
+		</script>
+	</body>
 </html>
