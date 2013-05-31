@@ -8,7 +8,7 @@ $yr_use_banner=false;
 $yr_use_text=false;   
 $yr_use_links=false;  
 $yr_use_table=true;
-$yr_maxage=0;
+$yr_maxage=1800;
 $yr_timeout=10;
 $yr_datadir='white_cache';
 $yr_link_target='_top';
@@ -107,10 +107,10 @@ EOT
 			fclose($fp);
 			$data=file_get_contents($lokal_xml_url,0,$ctx);
 			unlink($lokal_xml_url);
-			if(false==$data)$data=$this->getYrXMLErrorMessage('Det oppstod en feil mens værdata ble lest fra yr.no. Teknisk info: Mest antakelig: kobling feilet. Nest mest antakelig: Det mangler støtte for fopen wrapper, og cURL feilet også. Minst antakelig: cURL har ikke rettigheter til å lagre temp.xml');
+			if(false==$data)$data=$this->getYrXMLErrorMessage('Det oppstod en feil mens vÃŠrdata ble lest fra yr.no. Teknisk info: Mest antakelig: kobling feilet. Nest mest antakelig: Det mangler stÂ¯tte for fopen wrapper, og cURL feilet ogsÃ‚. Minst antakelig: cURL har ikke rettigheter til Ã‚ lagre temp.xml');
 		}
 		else{
-			$data=$this->getYrXMLErrorMessage('Det oppstod en feil mens værdata ble forsøkt lest fra yr.no. Teknisk info: Denne PHP-installasjon har verken URL enablede fopen_wrappers eller cURL. Dette gjør det umulig å hente ned værdata. Se imiddlertid følgende dokumentasjon: http://no.php.net/manual/en/wrappers.php, http://no.php.net/manual/en/book.curl.php');
+			$data=$this->getYrXMLErrorMessage('Det oppstod en feil mens vÃŠrdata ble forsÂ¯kt lest fra yr.no. Teknisk info: Denne PHP-installasjon har verken URL enablede fopen_wrappers eller cURL. Dette gjÂ¯r det umulig Ã‚ hente ned vÃŠrdata. Se imiddlertid fÂ¯lgende dokumentasjon: http://no.php.net/manual/en/wrappers.php, http://no.php.net/manual/en/book.curl.php');
 		}
 		return $data;
 	}
@@ -118,11 +118,11 @@ EOT
 	private function parseXMLIntoStruct($data){
 		global $yr_datadir;
 		$parser = xml_parser_create('ISO-8859-1');
-		if((0==$parser)||(FALSE==$parser))return $this->getYrDataErrorMessage('Det oppstod en feil mens værdata ble forsøkt hentet fra yr.no. Teknisk info: Kunne ikke lage XML parseren.');
+		if((0==$parser)||(FALSE==$parser))return $this->getYrDataErrorMessage('Det oppstod en feil mens vÃŠrdata ble forsÂ¯kt hentet fra yr.no. Teknisk info: Kunne ikke lage XML parseren.');
 		$vals = array();
-		if(FALSE==xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1))return $this->getYrDataErrorMessage('Det oppstod en feil mens værdata ble forsøkt hentet fra yr.no. Teknisk info: Kunne ikke stille inn XML-parseren.');
-		if(0==xml_parse_into_struct($parser, $data, $vals, $index))return $this->getYrDataErrorMessage('Det oppstod en feil mens værdata ble forsøkt hentet fra yr.no. Teknisk info: Parsing av XML feilet.');
-		if(FALSE==xml_parser_free($parser))return $this->getYrDataErrorMessage('Det oppstod en feil mens værdata ble forsøkt hentet fra yr.no. Kunne ikke frigjøre XML-parseren.');
+		if(FALSE==xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1))return $this->getYrDataErrorMessage('Det oppstod en feil mens vÃŠrdata ble forsÂ¯kt hentet fra yr.no. Teknisk info: Kunne ikke stille inn XML-parseren.');
+		if(0==xml_parse_into_struct($parser, $data, $vals, $index))return $this->getYrDataErrorMessage('Det oppstod en feil mens vÃŠrdata ble forsÂ¯kt hentet fra yr.no. Teknisk info: Parsing av XML feilet.');
+		if(FALSE==xml_parser_free($parser))return $this->getYrDataErrorMessage('Det oppstod en feil mens vÃŠrdata ble forsÂ¯kt hentet fra yr.no. Kunne ikke frigjÂ¯re XML-parseren.');
 		return $vals;
 	}
 
@@ -181,7 +181,7 @@ EOT
 			$tree[$vals[$i]['tag']][$index]=array_merge($tree[$vals[$i]['tag']][$index], $this->rearrangeChildren($vals, $i));
 		} else $tree[$vals[$i]['tag']][] = $this->rearrangeChildren($vals, $i);
 		if(isset($tree['WEATHERDATA'][0]['FORECAST'][0]))return $tree['WEATHERDATA'][0]['FORECAST'][0];
-		else return YrComms::getYrDataErrorMessage('Det oppstod en feil ved behandling av data fra yr.no. Vennligst gjør administrator oppmerksom på dette! Teknisk: data har feil format.');
+		else return YrComms::getYrDataErrorMessage('Det oppstod en feil ved behandling av data fra yr.no. Vennligst gjÂ¯r administrator oppmerksom pÃ‚ dette! Teknisk: data har feil format.');
 	}
 
 	public function getXMLTree($xml_url, $try_curl, $timeout){
@@ -465,10 +465,11 @@ EOT
 	}
 
 	public function getWeatherTableFooter($target='_top'){
+		$url=YRComms::convertEncodingEntities($this->yr_url);
 		$this->ht.=<<<EOT
         </tbody>
 	</table>
-	<p><a href="http://www.yr.no/" target="_top">V&aelig;rvarsel fra yr.no, levert av Meteorologisk institutt og NRK.</a></p>
+	<p><a href="$url" target="_top">Weather forecast from yr.no, delivered by the Norwegian Meteorological Institute and the NRK</a></p>
 
 EOT
 		;
@@ -496,7 +497,7 @@ EOT
 		if(($maxage>0)&&((file_exists($yr_cached))&&((time()-filemtime($yr_cached))<$maxage))){
 			$data['value']=file_get_contents($yr_cached);
 			if(false==$data['value']){
-	  	$data['value']='<p>Det oppstod en feil mens værdata ble lest fra lokalt mellomlager. Vennligst gjør administrator oppmerksom på dette! Teknisk: Sjekk at rettighetene er i orden som beskrevet i bruksanvisningen for dette scriptet</p>';
+	  	$data['value']='<p>Det oppstod en feil mens vÃŠrdata ble lest fra lokalt mellomlager. Vennligst gjÂ¯r administrator oppmerksom pÃ‚ dette! Teknisk: Sjekk at rettighetene er i orden som beskrevet i bruksanvisningen for dette scriptet</p>';
 	  	$data['error'] = true;
 	  }
 		}
