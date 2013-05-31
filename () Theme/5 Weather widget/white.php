@@ -292,7 +292,6 @@ class YRDisplay{
 		xs {font-size: 5px;}
 		img {margin-top: -4px;}
 		p {font-family: Helvetica;text-align: center;}
-		a {color:white;text-decoration: none;}
 		table {margin: 0px auto 10px auto;}
 		
 		th {width:20px;}
