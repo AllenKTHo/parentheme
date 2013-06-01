@@ -1,0 +1,218 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			// () HTML LS
+			//
+			// Credits:
+			//  - Code and design by Andreas Larsen ( andreaslarsen at github )
+			//  - Code + hosting by Patrick Loewer ( nawuko at github )
+			//  - Weather data provided by yr.no
+			
+			// Appearance
+			var styleMode = 'black'; // 'black' or 'white'
+			
+			// Clock
+			var clockMode = true; // false to enable 12 hour mode
+			var clockWeeks = new Array("SU","MO","TU","WE","TH","FR","SA");
+			var clockMonths = new Array("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC");
+			
+			// Weather
+			var weatherEnabled = true; // false to disable the weather widget
+			var weatherPlace = 'FUNKY'; // from last part after /place/ from http://www.yr.no/place/Canada/Ontario/Ottawa/
+			var weatherFormat = 'EU'; // or US for fahrenheit/inches/miles per hour
+		</script>
+		 <link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="widget">
+			<div id="time"></div>
+			<div id="date"></div>
+			<div id="forecast">
+				<div id="error"></div>
+				<table>
+					<tbody id="weather">
+						
+					</tbody>
+				</table>
+			</div>
+			<div id="copyright"><a id="link" target="_blank">Weather forecast from yr.no, delivered by the Norwegian Meteorological Institute and the NRK</a></div>
+		</div>
+		<script type="text/javascript">									
+			var getWeather = function() {
+			
+				if( !weatherEnabled )
+					return
+					
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.timeout = 4000;
+				
+				// On timeour disable weather widget temoprary
+				xmlhttp.ontimeout = function () { 
+					weatherEnabled = false;
+				};
+				
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						var response = JSON.parse(xmlhttp.responseText);
+						if( response['status'] == 200 ) {
+							// draw table
+							renderWeather(response.data);
+							
+							// check every 30 minutes
+							setTimeout(getWeather, 30 * 60 * 1000);
+						} else {
+							renderError(response.message);
+						}
+					}
+				};
+
+				xmlhttp.open("GET", "http://weather.kuee.de/?place=" + weatherPlace + "&format=" + weatherFormat, true);
+				xmlhttp.send();
+			}
+			
+			var applyStyle = function() {
+				styleMode = styleMode.toLowerCase()
+				var link = document.getElementById("link");
+				
+				if( styleMode == 'white' ) {
+					document.body.style.color = '#FFF';
+					
+					if( link != null )
+						link.style.color = '#FFF';
+				} else if( styleMode == 'black' ) {
+					document.body.style.color = '#000';
+					
+					if( link != null )
+						link.style.color = '#000';
+				}
+			};
+			
+			var renderError = function(message) {
+				var error = document.getElementById("error");
+				
+				error.innerHTML = message;
+				error.style.display = "block";
+			};
+			
+			var renderWeather = function(data) {
+				var table = document.getElementById("weather");
+				var copy = document.getElementById("copyright");
+				var link = document.getElementById("link");
+				
+				if( link != null )
+					link.href = "http://www.yr.no/place/" + weatherPlace;
+					
+				table.innerHTML = ''; // empty table
+				table.style.display = "none";
+				
+				for(index in data) {
+					var row = generateHtml(data[index]);
+					table.appendChild(row);
+				}
+				
+				if( copy != null )
+					copy.style.display = "block";
+				
+				table.style.display = "block";
+			}
+			
+			var generateHtml = function(data) {
+				var row = document.createElement("tr");
+				
+				// time
+				var timeRow = document.createElement("th");
+				var timeText = document.createTextNode(data['time']);
+				timeRow.appendChild(timeText);
+				
+				// symbol
+				var imageRow = document.createElement("td");
+				imageRow.className = "image";
+				
+				var imageImage = document.createElement("img");
+				imageImage.src = "images/" + styleMode + "/" + data['symbol'] + ".png";
+				imageRow.appendChild(imageImage);
+				
+				// rain
+				var rainRow = document.createElement("td");
+				rainRow.className = "ned";
+				
+				if( weatherFormat == "EU" )
+					rainRow.innerHTML = data['rain'] + "<small><xs> </xs>mm</small>";
+				else if( weatherFormat == "US" )
+					rainRow.innerHTML = data['rain'] + "<xs> </xs>";
+				
+				// temperature
+				var tempRow = document.createElement("td");
+				tempRow.className = data['temperclass'];
+				tempRow.innerHTML = data['temperature'];
+				
+				// wind direction
+				var dirRow = document.createElement("td");
+				dirRow.className = "v";
+				
+				var dirImage = document.createElement("img");
+				dirImage.src = "images/" + styleMode + "/" + data['windSymbol'] + ".png";
+				dirRow.appendChild(dirImage);
+				
+				// wind speed
+				var speedRow = document.createElement("td");
+				speedRow.className = "ms";
+				
+				if( weatherFormat == "EU" )
+					speedRow.innerHTML = data['windSpeed'] + "<small><xs> </xs>m/s<small>";
+				else if( weatherFormat == "US" )
+					speedRow.innerHTML = data['windSpeed'] + "<small><xs> </xs>mph<small>";
+				
+				// append to main row
+				row.appendChild(timeRow);
+				row.appendChild(imageRow);
+				row.appendChild(rainRow);
+				row.appendChild(tempRow);
+				row.appendChild(dirRow);
+				row.appendChild(speedRow);
+
+				return row;
+			}
+
+			var updateClock = function() {
+				var timeEle = document.getElementById('time');
+				var dateEle = document.getElementById('date');
+			
+				// date function
+				var d = new Date();
+				var DAY = d.getDay();
+				var DATE = d.getDate();
+				if (DATE < 10){DATE = "0" + DATE;}
+				var NTH = d.getMonth();
+
+				dateEle.innerHTML = clockWeeks[DAY] + " " + DATE + " " + clockMonths[NTH];
+
+				// clock function
+				var d = new Date();
+				var HH = d.getHours();
+				if (!clockMode && HH > 12){HH = HH - 12;} // 12 hour mode!
+				if (HH < 10){HH = "0" + HH;}
+				var MM = d.getMinutes();
+				if (MM < 10){MM = "0" + MM;}
+
+				timeEle.innerHTML = HH + ":" + MM;
+
+				// calculate next minute tick ( seconds left + 10ms )
+				setTimeout(updateClock, (60 - (new Date()).getSeconds()) * 1000 + 10);
+			};
+			
+			var onInit = function() {
+				applyStyle();
+				updateClock();
+				
+				if(weatherEnabled) {
+					getWeather();
+				}
+			};
+
+			// excute on page load
+			document.addEventListener('DOMContentLoaded', onInit)
+		</script>
+	</body>
+</html>

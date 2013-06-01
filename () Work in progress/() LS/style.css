@@ -1,0 +1,30 @@
+@font-face{font-family:source_code_problack;src:url(sourcecodepro.svg#source_code_problack) format(svg);}
+@font-face{font-family:source_code_prosemibold;src:url(sourcecodepro.svg#source_code_prosemibold) format(svg);}
+
+body{background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg');background-repeat:no-repeat;background-size:320px auto;width:320px;font-family:source_code_problack;margin:0;padding:0;}
+
+#weather, #weather tr, #weather th, #weather td, table {font-family:'source_code_prosemibold'; font-size: 20px; text-align: right;-webkit-border-horizontal-spacing: 0px;-webkit-border-vertical-spacing: 0px;}
+#forecast{height:150px;margin:0 auto -12px auto;}
+#widget{margin-top:100px;margin-left:auto;margin-right:auto;width:280px;padding-top:2px;background:rgba(0,0,0,0.0);border-radius:10px;}
+#time{font-size:87px;margin:0 auto -12px auto;text-align: center;}
+#date{font-size:48px;margin:0 auto 0 auto; text-align: center; }
+#copyright { display: none; font-family: Helvetica; font-size: 13px; margin: 10px auto 10px auto; width:280px; text-align: center; }
+#copyright a {text-decoration: none;}
+
+#weather small {font-size: 11px;}
+#weather xs {font-size: 5px;}
+#weather img {margin-top: -4px;}
+#weather table {margin: 0px auto 10px auto; width: 280px;}
+#weather th {width:20px;}
+#weather tr { display:block; height:32px; }
+
+#weather .image { width:53px; }
+#weather .image img { width: 38px; height: 38px; }
+#weather .ned {width:49px;}
+#weather .plus {width:50px;}
+#weather .minus {width:50px;}
+#weather .v {width: 30px;}
+#weather .v img { width: 20px; height: 38px; }
+#weather .ms {width:50px;}
+
+#error { display: none; text-align: center; margin-top:80px;margin-left:auto;margin-right:auto; width: 280px; font-family: Helvetica; font-size: 15px; font-weight: bold; }
