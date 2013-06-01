@@ -14,8 +14,12 @@
 <div data-role="page">
 
 	<div data-role="content">
-		<p>
+		<h1> () LS Settings</h1>
+		<p>Created by <a href="#">Andreas</a> and <a href="#">Patrick</a>, weather data from <a href="http://yr.no">yr.no</a>
+				<br />
+				<br />
 			<form>
+
 				<fieldset data-role="controlgroup">
 			        <legend>Color:</legend>
 			        <input type="radio" name="radio-choice-v-4" id="radio-choice-v-4a" value="on" checked="checked">
@@ -23,6 +27,8 @@
 			        <input type="radio" name="radio-choice-v-4" id="radio-choice-v-4b" value="off">
 			        <label for="radio-choice-v-4b">White</label>
 			    </fieldset>
+				<br />
+				<br />
 					<label for="select-choice-a" class="select">Language:</label>
 					<select name="select-choice-a" id="select-choice-a" data-native-menu="false">
 					    <option>Choose</option>
@@ -31,13 +37,8 @@
 					    <option value="express">Spanish</option>
 					    <option value="overnight">Italian</option>
 					</select>
-				<fieldset data-role="controlgroup">
-			        <legend>Weather widget:</legend>
-			        <input type="radio" name="radio-choice-v-5" id="radio-choice-v-5a" value="on" checked="checked">
-			        <label for="radio-choice-v-5a">On</label>
-			        <input type="radio" name="radio-choice-v-5" id="radio-choice-v-5b" value="off">
-			        <label for="radio-choice-v-5b">Off</label>
-			    </fieldset>
+				<br />
+				<br />
 				<fieldset data-role="controlgroup">
 			        <legend>Time format:</legend>
 			        <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" checked="checked">
@@ -45,6 +46,31 @@
 			        <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
 			        <label for="radio-choice-v-2b">24 Hour</label>
 			    </fieldset>
+				<br />
+				<br />
+				<fieldset data-role="controlgroup">
+			        <legend>Weather widget:</legend>
+			        <input type="radio" name="radio-choice-v-5" id="radio-choice-v-5a" value="on" checked="checked">
+			        <label for="radio-choice-v-5a">On</label>
+			        <input type="radio" name="radio-choice-v-5" id="radio-choice-v-5b" value="off">
+			        <label for="radio-choice-v-5b">Off</label>
+			    </fieldset>
+				<br />
+				<br />
+				<label for="text-basic">Weather URL, <a href="http://yr.no">yr.no</a></label>
+				<pre>Example: http://www.yr.no/place/Canada/Ontario/Ottawa/</pre>
+				<input type="text" name="text-basic" id="text-basic" value="">
+				<br />
+				<br />
+				<fieldset data-role="controlgroup">
+			        <legend>Copyright notice:</legend>
+			        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="on" checked="checked">
+			        <label for="radio-choice-v-6a">Display</label>
+			        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="off">
+			        <label for="radio-choice-v-6b">Hidden</label>
+			    </fieldset>
+				<br />
+				<br />
 				<fieldset data-role="controlgroup">
 			        <legend>Weather format:</legend>
 			        <input type="radio" name="radio-choice-v-3" id="radio-choice-v-3a" value="on" checked="checked">
@@ -52,6 +78,12 @@
 			        <input type="radio" name="radio-choice-v-3" id="radio-choice-v-3b" value="off">
 			        <label for="radio-choice-v-3b">Fahrenheit " mph</label>
 			    </fieldset>
+				<br />
+				<br />
+				<input type="submit" value="Save">
+				<br />
+				<br />
+
 			</form>
 		</p>
 	</div><!-- /content -->

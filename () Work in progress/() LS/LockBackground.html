@@ -4,7 +4,7 @@
 			// () HTML LS
 			//
 			// Credits:
-			//  - Code and design by Andreas Larsen ( andreaslarsen at github )
+			//  - Code + design by @andreaslarsendk
 			//  - Code + hosting by Patrick Loewer ( nawuko at github )
 			//  - Weather data provided by yr.no
 			
@@ -18,7 +18,7 @@
 			
 			// Weather
 			var weatherEnabled = true; // false to disable the weather widget
-			var weatherPlace = 'FUNKY'; // from last part after /place/ from http://www.yr.no/place/Canada/Ontario/Ottawa/
+			var weatherPlace = 'Canada/Ontario/Ottawa/'; // from last part after /place/ from http://www.yr.no/place/Canada/Ontario/Ottawa/
 			var weatherFormat = 'EU'; // or US for fahrenheit/inches/miles per hour
 		</script>
 		 <link rel="stylesheet" type="text/css" href="style.css">
@@ -35,7 +35,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div id="copyright"><a id="link" target="_blank">Weather forecast from yr.no, delivered by the Norwegian Meteorological Institute and the NRK</a></div>
+			<div id="copyright"><p><a id="link" target="_blank">Weather forecast from yr.no, delivered by the Norwegian Meteorological Institute and the NRK</a></p></div>
 		</div>
 		<script type="text/javascript">									
 			var getWeather = function() {

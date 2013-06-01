@@ -4,21 +4,21 @@
 body{background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg');background-repeat:no-repeat;background-size:320px auto;width:320px;font-family:source_code_problack;margin:0;padding:0;}
 
 #weather, #weather tr, #weather th, #weather td, table {font-family:'source_code_prosemibold'; font-size: 20px; text-align: right;-webkit-border-horizontal-spacing: 0px;-webkit-border-vertical-spacing: 0px;}
-#forecast{height:150px;margin:0 auto -12px auto;}
+#forecast{height:140px;margin:0 auto -12px auto;}
 #widget{margin-top:100px;margin-left:auto;margin-right:auto;width:280px;padding-top:2px;background:rgba(0,0,0,0.0);border-radius:10px;}
 #time{font-size:87px;margin:0 auto -12px auto;text-align: center;}
 #date{font-size:48px;margin:0 auto 0 auto; text-align: center; }
-#copyright { display: none; font-family: Helvetica; font-size: 13px; margin: 10px auto 10px auto; width:280px; text-align: center; }
-#copyright a {text-decoration: none;}
+#copyright { display: none; font-family: Helvetica; font-size: 13px; margin-top: 10px; width:280px; text-align: center; }
+#copyright a {text-decoration: none; }
 
 #weather small {font-size: 11px;}
 #weather xs {font-size: 5px;}
 #weather img {margin-top: -4px;}
-#weather table {margin: 0px auto 10px auto; width: 280px;}
+table {margin: 0px auto 10px 10px; width: 260px;}
 #weather th {width:20px;}
 #weather tr { display:block; height:32px; }
 
-#weather .image { width:53px; }
+#weather .image { width:43px; }
 #weather .image img { width: 38px; height: 38px; }
 #weather .ned {width:49px;}
 #weather .plus {width:50px;}
