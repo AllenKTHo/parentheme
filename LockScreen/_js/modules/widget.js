@@ -163,24 +163,6 @@ var widget = new function() {
 		table.style.display = "block";
 	};
 	
-	this.sendReport = function(script, text) {
-		var getParam = function(name, value) {
-			return (encodeURIComponent(name) + "=" + encodeURIComponent(value)).replace(/%20/g, '+');
-		};
-		
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.timeout = 4000;
-
-		xmlhttp.ontimeout = function () {};
-		xmlhttp.onreadystatechange = function() {};
-		
-		var debugUrl = "http://api.nawuko.de/weather/debug";
-		
-		xmlhttp.open("POST", debugUrl, true);
-		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
-		xmlhttp.send(getParam('script', script)+'&'+getParam('text', text));
-	};
-	
 	this.onSlide = function(page) {
 		clearTimeout(this.slidetime);
 		if( page == 1 ) {
@@ -210,7 +192,6 @@ var widget = new function() {
 					setTimeout(widget.getWeather, 30 * 60 * 1000);
 				} else {
 					widget.renderError(response.message);
-					_this.sendReport('getWeather', response.message);
 				}
 			}
 		};
@@ -242,8 +223,6 @@ var widget = new function() {
 				} else {
 					_this.swipe.kill();
 				}
-			} else {
-				_this.sendReport('settingsBridge', data);
 			}
 		});
 	};
