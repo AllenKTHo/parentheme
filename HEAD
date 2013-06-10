@@ -1,0 +1,552 @@
+commit d6c14d208179910d404f7f81140c56f630e2e269
+Merge: 12cbe15 357bb11
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon Jun 10 07:18:08 2013 -0700
+
+    Merge pull request #26 from Nawuko/master
+    
+    LS: remove old debug code
+
+commit 357bb11b4d8cf61452f009c1136e7ff975f105f2
+Author: Patrick L <patrick.loewer@gmail.com>
+Date:   Mon Jun 10 14:12:03 2013 +0000
+
+    LockScreen: remove old debug code
+
+commit 12cbe15472147ee294730f48e0a40e206e8675ef
+Merge: e85aa6f 3890b8f
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon Jun 10 07:08:03 2013 -0700
+
+    Merge pull request #25 from Nawuko/master
+    
+    LockScreen
+
+commit 3890b8f39c1e35affa09eb22fa3c7a92cd385971
+Author: Patrick L <patrick.loewer@gmail.com>
+Date:   Mon Jun 10 14:01:44 2013 +0000
+
+    LockScreen 0.1
+
+commit e85aa6f036142c91fc4fac895d55192dccf9a2da
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon Jun 10 15:36:50 2013 +0200
+
+    removed old LS
+
+commit 6241e5ddef4efe300a69f3e6a9b3108830b2918c
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon Jun 10 00:57:07 2013 +0200
+
+    : fix
+
+commit 141bae1d0213a37545ed359002c74f7aac5c3dc7
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun Jun 9 23:44:15 2013 +0200
+
+    missed one ()
+
+commit 23b987e7ef7de259f808f1d58b547ebc3493a558
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun Jun 9 23:28:28 2013 +0200
+
+    restructure, removed () from folder names
+
+commit b389edd568c5bea1458418875e1aceb20f495fd9
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat Jun 8 12:09:40 2013 +0200
+
+    some rearranging and reoptimisation
+
+commit 0149fac27ce0021fee34ca14f8a1b9054bca5977
+Merge: 7ead040 bf2d000
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat Jun 8 12:07:16 2013 +0200
+
+    Merge branch 'master' of https://github.com/andreaslarsen/untitled
+    
+    # By gianpispier
+    # Via Andreas Larsen (2) and gianpispier (1)
+    * 'master' of https://github.com/andreaslarsen/untitled:
+      Icon Added
+      Add Icons
+      Add Icon
+      Add new Icon
+
+commit bf2d000478ed3fdde895347371e4d78f0e077511
+Merge: 3d6d88f 55d2444
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Fri Jun 7 05:37:51 2013 -0700
+
+    Merge pull request #19 from gianpispier/master
+    
+    Add Icon
+
+commit 55d2444b118e9599a1f2c42f144e561c37a6e347
+Author: gianpispier <gianpispi@me.com>
+Date:   Fri Jun 7 12:36:25 2013 +0200
+
+    Icon Added
+    
+    New Icon Added
+
+commit 3d6d88f35a3da92cf711ea6ea68353569d373322
+Merge: 5696d8d 1050ff2
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Thu Jun 6 09:21:27 2013 -0700
+
+    Merge pull request #18 from gianpispier/master
+    
+    Icon Added
+
+commit 1050ff2dfd731704b45759fd784316a53f72a854
+Author: gianpispier <gianpispi@me.com>
+Date:   Thu Jun 6 17:33:57 2013 +0200
+
+    Add Icons
+    
+    Add new Icons
+
+commit 36118e4c019f66c9f655b84ee81d7bdb6a4f6049
+Author: gianpispier <gianpispi@me.com>
+Date:   Thu Jun 6 16:39:38 2013 +0200
+
+    Add Icon
+    
+    Add Icon…
+    
+    This way are correct :)
+
+commit 089a2c0869ab89e932ea45bf07ba79104821d434
+Author: gianpispier <gianpispi@me.com>
+Date:   Thu Jun 6 14:00:18 2013 +0200
+
+    Add new Icon
+    
+    Add New Icon
+
+commit 7ead040d8064aba5a31f3db28696d6429e99378a
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat Jun 1 16:54:54 2013 +0200
+
+    updated (mainly settings + css)
+
+commit 5696d8d84c946fbaf617cba02fa2499cfd9d2bbe
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat Jun 1 08:17:39 2013 +0200
+
+    Lockscreen widget work in progress, optimised many images for speed + more
+
+commit abf1c4c7bbc401f8c52bb8805f94692ce7652953
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Fri May 31 17:40:39 2013 +0200
+
+    new wooden wallpaper, now black UI bg for white icons
+
+commit 46e432cbc0aed8eadfe72ccddc32d1ad93978def
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Fri May 31 09:18:46 2013 +0200
+
+    updated to include cache, link to actual forecast and not yr.no frontpage
+
+commit 26d1e5c1128e5e951b84567e209656637cfff43b
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Fri May 31 00:26:37 2013 +0200
+
+    optimised icons, new icons, US (chicago) php example, UI (lock screen, notification centre etc…WIP)
+
+commit 019e7e132b4f32ce164bb3c430dc220cbeb1603f
+Merge: 3e1abe4 c363498
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Thu May 30 07:57:46 2013 -0700
+
+    Merge pull request #12 from Nawuko/master
+    
+    Update LockScreens every minute instead of every second
+
+commit c3634987eb3cd03f303b17782c4b9f55a50b5929
+Author: Patrick L. <p.loewer@me.com>
+Date:   Thu May 30 15:51:37 2013 +0300
+
+    () White LS minor speed improvment
+    
+    Shows the clock some milliseconds earlier ... windows.onload waits for the forecast
+
+commit 46f78b0de055cda1d6110e318103a28adcf951f2
+Author: Patrick L. <p.loewer@me.com>
+Date:   Thu May 30 15:50:39 2013 +0300
+
+    () Black LS minor speed improvment
+    
+    Shows the clock some milliseconds earlier ... windows.onload waits for the forecast to load
+
+commit b5ee339153f5120232b48d55f509f85633cddb94
+Author: Patrick L. <p.loewer@me.com>
+Date:   Thu May 30 14:39:36 2013 +0200
+
+    Update () White LS every minute instead of every second
+
+commit 181eaf713e264c5dde613c2959a26ea469dc42e3
+Author: Patrick L. <p.loewer@me.com>
+Date:   Thu May 30 15:38:47 2013 +0300
+
+    Update () Black LS every minute instead of every second
+
+commit 3e1abe41f1456e288f31567363fbfdc90b203e11
+Merge: 2b0dc19 0f30321
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Thu May 30 05:19:57 2013 -0700
+
+    Merge pull request #11 from Nawuko/master
+    
+    Improved LockScreens
+
+commit 0f3032161fc548d63d041f62bec68d770286fcea
+Author: Patrick L. <p.loewer@me.com>
+Date:   Thu May 30 15:13:28 2013 +0300
+
+    Fix "() White LS"
+    
+    LockScreen updates now every second while visible
+
+commit d6d9569094944b5a4a67af8a173fa65c05200180
+Author: Patrick L. <p.loewer@me.com>
+Date:   Thu May 30 14:12:42 2013 +0200
+
+    Fix "() Black LS"
+    
+    LockScreen Updates now every seconds while visible
+
+commit 2b0dc195a87c632b19662dfcb6ab2940efe8466b
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Thu May 30 00:39:58 2013 +0200
+
+    lock screen updates
+
+commit 137c9d6bc713defa5814c173ae4297f78fbd36cf
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Wed May 29 17:58:35 2013 +0200
+
+    new icons
+
+commit 17f9af90ef492027d145d185fc7e567f4deba1dd
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Wed May 29 16:31:46 2013 +0200
+
+    new icons
+
+commit 680fe6fde71e9769510a4ae062bced8d2f8646fa
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Tue May 28 22:30:25 2013 +0200
+
+    icons and glyphs
+
+commit bd66d929d4061ccb13daa3cc38d7660cabc1bf8e
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Tue May 28 17:00:05 2013 +0200
+
+    Created dr icons for the tutorial
+
+commit 1587e64cf14cefb45fa25b689f4b27bba0f76f12
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Tue May 28 15:34:35 2013 +0200
+
+    Update README.md
+
+commit 6779b737eb3a3e32c2666f1b62089e5f07844520
+Merge: 4710b0d b8f712a
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Tue May 28 01:05:28 2013 +0200
+
+    Merge branch 'master' of https://github.com/andreaslarsen/untitled
+    
+    * 'master' of https://github.com/andreaslarsen/untitled:
+      Update readme.md
+
+commit 4710b0d0b56f66c422cf85ded51dcf65322aef29
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Tue May 28 01:05:24 2013 +0200
+
+    updated the lock screen stuff
+
+commit b8f712a488a1657b2916a8e6728db5ca378fd125
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 23:52:33 2013 +0300
+
+    Update readme.md
+
+commit 26b4843579b08505d27592b18a7092269d26ed73
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 21:21:34 2013 +0200
+
+    misc
+
+commit bc143eed725d5f67e75044969c58def767423d05
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 21:21:16 2013 +0200
+
+    iPad calendar icon font size and more strings
+
+commit b2ae2484844c84fc124e015e3eab4615664fce82
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 21:20:40 2013 +0200
+
+    Moved masks to backup folder, updated instructions in wiki to reflect this
+
+commit 0875a5c3396f9c622997cae910186d332998e730
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 21:20:01 2013 +0200
+
+    Added missing .strings + a new folder naming string
+
+commit 625f3623ee6c668c8f9c7ec40e91ed4f2d5cda8c
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 21:19:37 2013 +0200
+
+    statusbar support
+
+commit 4005b5a6072cc91c5de4dc668beb3ab8ea2669cb
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 21:18:27 2013 +0200
+
+    added support for older iPhones
+
+commit 157e6bb4322d9ab969491be3d82e5917e1eba64b
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 15:32:17 2013 +0200
+
+    Update README.md
+
+commit 2b74c875e777aaeca8cd44a93737897b13bf496d
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 15:49:53 2013 +0300
+
+    Update readme.md
+
+commit 919e40d6b3a9d53548b8af57026c3afea2dc5d37
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:49:08 2013 +0200
+
+    Update readme.md
+
+commit e8078a8fcf376f78d03006f7194fb1fdb6fea3e8
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:48:05 2013 +0200
+
+    Update README.md
+
+commit 23947ce2a4563d09edb756afb582f540a1809cd1
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:45:48 2013 +0200
+
+    Update README.md
+
+commit 309ac89372d8f1f2a652b0570a79ae013c07709a
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 15:42:43 2013 +0300
+
+    Update README.md
+
+commit 7ec743c6fc5bba5c62acff8b94fd241b4b08749c
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:13:50 2013 +0200
+
+    Update readme.md
+
+commit a2f826a78965fbd1c05a2806f5a0780ce1e68294
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:12:53 2013 +0200
+
+    Update readme.md
+
+commit 714486c31ec64554f585e223129c2e1dfc2c4357
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:11:52 2013 +0200
+
+    added wallpaper psds
+
+commit 087f7ead74709d497fdf4ed181e45a95b917def1
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:11:05 2013 +0200
+
+    added wallpapers
+
+commit ef68d7c3f264b739fe93b6b7bc18bcdaa6e009c2
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 14:10:31 2013 +0200
+
+    fix auxo snapshot
+
+commit 42dfa23fb8b120aa0b4ab9f8f400ed7040747309
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 03:08:50 2013 +0200
+
+    Create readme.md
+
+commit 9bff7bb66eaeb2d8ea476f3d7fe7ff669769fad4
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 03:03:40 2013 +0200
+
+    Update LICENSE.md
+
+commit 2d405179a0b9f94682fc32f75ca2f9c996e4f9b6
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 03:47:41 2013 +0300
+
+    Update README.md
+
+commit 3681af9195e2306e8859afdb3cc074242bcaf456
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 02:29:30 2013 +0200
+
+    more springboard files + auxo
+
+commit 7ac2642db7e4bd9f414bb7a434f4f99e5b1ee277
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 01:48:20 2013 +0200
+
+    fixed the black box, added many springboard files
+
+commit 30323271bfc7b763a40fe890c50f9c9d7c2af63b
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 00:07:17 2013 +0200
+
+    Update README.md
+
+commit cc20b7b784edc8e68f110df8015aa26ccaf6f619
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Mon May 27 00:00:26 2013 +0200
+
+    Rearraring and bug fixes, see wiki for instructions
+
+commit 500196bd902902ffce6170e196dc569a47c91400
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 22:04:22 2013 +0300
+
+    Update LICENSE.md
+
+commit 4c36cf4da4d1f493ab329907e271bc0f4dcad4ea
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 21:03:11 2013 +0200
+
+    Update LICENSE.md
+
+commit 3224000be301d1b27bbeded7ff9991ed501232c8
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 22:00:21 2013 +0300
+
+    Update LICENSE.md
+
+commit 4f9c9baa22dff387ed07c5796526a7e62955ad37
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 21:54:00 2013 +0300
+
+    Update LICENSE.md
+
+commit c6e3239d59388657fdf887bdec351f3bb75ad8b4
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 21:51:16 2013 +0300
+
+    Update LICENSE.md
+
+commit d1e527e6ee4dab2e2ab5ab2d7295d365eefc305b
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 17:34:58 2013 +0300
+
+    Update README.md
+
+commit b9a7b8cf5d7339769cfbe197dc7045494171b352
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 16:30:19 2013 +0200
+
+    Update LICENSE.md
+
+commit a8e6cb8e8cbf6bfede4c45bc9acb0acab1f7b644
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 12:35:27 2013 +0200
+
+    Update lockscreen languages
+
+commit c2ae75c305907ab8e8654d9e4ad7860b2403041f
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 12:30:05 2013 +0200
+
+    Create lockscreen languages
+
+commit bbcfc94065b59e79915e15f64ec853be9a728b98
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 12:08:21 2013 +0200
+
+    initial sync
+
+commit f79ff293ba9d58f5e409d1c9079e2d79da692930
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 12:01:53 2013 +0200
+
+    Update .gitignore
+
+commit 33ecf092f8ae87d56a1494d65eea5a6083f048f1
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 12:52:00 2013 +0300
+
+    Update README.md
+
+commit 2b6b6174fb6d6c0222453fe7fedd7ab8900d48e7
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 12:50:54 2013 +0300
+
+    Update README.md
+
+commit 5e349c4f7b97c0bab224e3e7b644a53633271d97
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 12:50:17 2013 +0300
+
+    Update README.md
+
+commit 871907885c782d9af85b3b1b9ee10f91debd9fab
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 11:49:13 2013 +0200
+
+    Update README.md
+
+commit dc5d9596caa75b9e8e0b61ce3506e1e75e76cbbe
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 11:48:02 2013 +0200
+
+    Update README.md
+
+commit 63e4434fdaf70d970aa528ee0e69336ad8309fff
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sun May 26 11:47:45 2013 +0200
+
+    Update README.md
+
+commit 8fa746fc93c9ccd03d4d96c58ddd99abbcf55549
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat May 25 18:09:46 2013 +0200
+
+    Update README.md
+
+commit 4fec5240f9a27db38bb558f589c41137706e9595
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat May 25 19:08:20 2013 +0300
+
+    Create .gitignore
+
+commit 9a1c5dd153ba8f18ec436340f3ccc6c74e03d44d
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat May 25 17:38:52 2013 +0300
+
+    Rename License.md to LICENSE.md
+
+commit 8616c76a51d097391eac0473571149330297bac9
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat May 25 17:38:30 2013 +0300
+
+    Create License.md
+
+commit ecc2ffd14631c4da87d43b734458f41fb662a496
+Author: Andreas Larsen <andreaslarsen86@gmail.com>
+Date:   Sat May 25 07:37:54 2013 -0700
+
+    Initial commit
