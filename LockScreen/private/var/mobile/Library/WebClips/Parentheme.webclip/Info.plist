@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ClassicMode</key>
+	<true/>
+	<key>FullScreen</key>
+	<false/>
+	<key>IconIsPrecomposed</key>
+	<true/>
+	<key>IconIsScreenShotBased</key>
+	<false/>
+	<key>Orientations</key>
+	<integer>0</integer>
+	<key>Title</key>
+	<string>() Settings</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleOpaqueBlack</string>
+	<key>URL</key>
+	<string>file:////Library/Themes/()%20LS.theme/settings/index.html</string>
+</dict>
+</plist>
