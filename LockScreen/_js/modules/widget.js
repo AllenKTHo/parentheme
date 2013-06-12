@@ -92,11 +92,6 @@ var widget = new function() {
 		var weatherFormat = settingsBridge.Get('weatherFormat');
 			
 		var table = document.getElementById("weather");
-		var copy = document.getElementById("copyright");
-		var link = document.getElementById("link");
-		
-		if( link != null )
-			link.href = "http://www.yr.no/place/" + settingsBridge.Get('weatherPlace');
 		
 		for(index in data) {
 			var info = data[index];
@@ -157,9 +152,6 @@ var widget = new function() {
 			table.appendChild(row);
 		}
 		
-		if( copy != null )
-			copy.style.display = "block";
-		
 		table.style.display = "block";
 	};
 	
@@ -172,6 +164,17 @@ var widget = new function() {
 		}
 	};
 	
+	this.randomString = function() {
+		var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+		var string_length = 12;
+		var string = '';
+		for( var i=0; i < string_length; i++ ) {
+			var rnum = Math.floor( Math.random() * chars.length );
+			string += chars.substring(rnum, rnum + 1);
+		}
+		return string;
+	}
+	
 	this.getWeather = function() {
 	
 		var table = document.getElementById("weather");			
@@ -181,7 +184,9 @@ var widget = new function() {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.timeout = 4000;
 
-		xmlhttp.ontimeout = function () {};
+		xmlhttp.ontimeout = function () {
+			setTimeout(widget.getWeather, 5 * 60 * 1000);
+		};
 		
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -191,6 +196,7 @@ var widget = new function() {
 					widget.renderWeather(response.data);
 					setTimeout(widget.getWeather, 30 * 60 * 1000);
 				} else {
+					setTimeout(widget.getWeather, 5 * 60 * 1000);
 					widget.renderError(response.message);
 				}
 			}
@@ -201,7 +207,8 @@ var widget = new function() {
 		weatherUrl += "/" + settingsBridge.Get('weatherFormat');
 		weatherUrl += "/" + settingsBridge.Get('weatherLength');
 		weatherUrl += "/" + settingsBridge.Get('weatherPlace');
-		
+		weatherUrl += "?v=" + widget.randomString();
+
 		xmlhttp.open("GET", weatherUrl, true);
 		xmlhttp.send();
 	};
