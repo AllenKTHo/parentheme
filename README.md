@@ -2,10 +2,9 @@ Welcome!
 ---
       () is originally created by Andreas Larsen (me) but hopefully many will help. 
       If you like this theme then please consider paying me a small amount.
-      Read the wiki for instructions on how to install the theme, create icons etc.
+      Read the wiki for instructions on how to create+request icons etc.
       
-[Donate](http://andreaslarsen.dk/parentheme/#paypal) - [Wiki](https://github.com/andreaslarsen/parentheme/wiki)
-
+<iframe src="http://andreaslarsen.dk/repo-depiction/parentheme/donate.html" style="border:0px  none;" name="donate" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" height="385px" width="100%"></iframe>
 
 License
 ---
