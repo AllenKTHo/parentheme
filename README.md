@@ -1,10 +1,13 @@
-Welcome!
+Welcome
 ---
       () is originally created by Andreas Larsen (me) but hopefully many will help. 
       If you like this theme then please consider paying me a small amount.
       Read the wiki for instructions on how to create+request icons etc.
       
-<iframe src="http://andreaslarsen.dk/repo-depiction/parentheme/donate.html" style="border:0px  none;" name="donate" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" height="385px" width="100%"></iframe>
+Donate
+---
+
+Support me by donating a small amount with paypal/credit card <a href="http://andreaslarsen.dk/repo-depiction/parentheme/donate.html">here</a>
 
 License
 ---
