@@ -36,11 +36,12 @@ body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackg
 
 .swipe { overflow: hidden; visibility: hidden; position: relative;  }
 .swipe-wrap { overflow: hidden; position: relative; }
-.swipe-wrap > div { float:left; width:100%; position: absolute; }
+.swipe-wrap > div { float:left; width:100%; position: relative; }
 
 .ipad .swipe { visibility: visible; }
 .ipad.weather #clock { padding-right: 400px; }
 .ipad.weather #forecast { padding-left: 400px; }
+.ipad .swipe-wrap > div { position: absolute; }
 
 .swipe, .swipe-wrap, .middle, .cell { height:100%; }
 .middle { display:table; }
