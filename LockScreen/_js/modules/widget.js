@@ -38,10 +38,10 @@ var widget = new function() {
 		
 		var height = window.screen.height;
 		
-		if( height == 568 )
-			document.body.style.height = '568px';
-		else
+		if( height == 480 )
 			document.body.style.height = '480px';
+		else
+			document.body.style.height = '568px';
 	};
 	
 	this.updateClock = function() {
