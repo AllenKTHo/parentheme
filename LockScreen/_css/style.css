@@ -28,6 +28,9 @@ body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackg
 #clock, #forecast { border-radius: 10px; }
 #clock { width: 290px; padding: 5px 0; }
 #forecast { width: 300px; padding-bottom: 2px; }
+
+.white { color: #FFF; }
+.black { color: #000; }
 .white.translucent #clock, .white.translucent #forecast { background-color: rgba(0, 0, 0, 0.6) }
 .black.translucent #clock, .black.translucent #forecast { background-color: rgba(255, 255, 255, 0.6) }
 
