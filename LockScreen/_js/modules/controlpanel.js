@@ -60,7 +60,11 @@ $(function() {
 	
 	$('#mainpage').fadeIn('fast');
 	
-	if( navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf('Chrome') == -1 ) {
+	var isSafari = navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf('Chrome') == -1;
+	//_DEBUG_START_
+	isSafari = true;
+	//_DEBUG_END_
+	if( isSafari ) {
 		settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
 			if( success ) {
 				syncForm();
