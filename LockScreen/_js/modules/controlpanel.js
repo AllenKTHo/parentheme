@@ -60,20 +60,24 @@ $(function() {
 	
 	$('#mainpage').fadeIn('fast');
 	
-	settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
-		if( success ) {
-			syncForm();
-			
-			settingsForm.submit(function() {
-				return false;
-			});
-			
-			saveButton.live('click', function() {
-				setTimeout(saveForm, 0);
-				return true;
-			});
-		} else {
-			alert(data);
-		}
-	});
+	if( navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf('Chrome') == -1 ) {
+		settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
+			if( success ) {
+				syncForm();
+				
+				settingsForm.submit(function() {
+					return false;
+				});
+				
+				saveButton.live('click', function() {
+					setTimeout(saveForm, 0);
+					return true;
+				});
+			} else {
+				alert(data);
+			}
+		});
+	} else {
+		alert('You must use Safari to change Settings!');
+	}
 });
