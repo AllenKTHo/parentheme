@@ -34,7 +34,10 @@ var widget = new function() {
 	};
 
 	this.setStyle = function() {
-		document.body.className = settingsBridge.Get('widgetColor');
+		document.body.classList.add(settingsBridge.Get('widgetColor'));
+		
+		if( settingsBridge.Get('widgetBackground') != 'none' )
+			document.body.classList.add(settingsBridge.Get('widgetBackground'));
 		
 		var height = window.screen.height;
 		

@@ -8,7 +8,8 @@ var settingsBridge = new function() {
 	this.setDefaults = function() {
 		var needSave = false;
 		var defaults = {
-			'widgetColor': 'black',
+			'widgetColor': 'white',
+			'widgetBackground': 'none',
 			'widgetLang': 'EN',
 			
 			'clockFormat': '24',
