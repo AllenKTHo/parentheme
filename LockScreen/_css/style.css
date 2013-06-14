@@ -2,7 +2,7 @@
 @font-face { font-family:source_code_prosemibold;src:url(sourcecodepro.svg#source_code_prosemibold) format(svg); }
 
 html, body { width: 320px; }
-body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg'); background-repeat:no-repeat; background-size:320px auto; font-family:source_code_problack; margin:0; padding:0; }
+body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg'); background-repeat:no-repeat; font-family:source_code_problack; margin:0; padding:0; }
 
 #forecast, #clock { width: 320px; margin: 0 auto; }
 
@@ -36,10 +36,14 @@ body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackg
 
 .swipe { overflow: hidden; visibility: hidden; position: relative;  }
 .swipe-wrap { overflow: hidden; position: relative; }
-.swipe-wrap > div { float:left; width:100%; position: relative; }
+.swipe-wrap > div { float:left; width:100%; position: absolute; }
+
+.ipad .swipe { visibility: visible; }
+.ipad.weather #clock { padding-right: 400px; }
+.ipad.weather #forecast { padding-left: 400px; }
 
 .swipe, .swipe-wrap, .middle, .cell { height:100%; }
 .middle { display:table; }
 .cell { display:table-cell; vertical-align:middle; }
 
-#error { display: none; text-align: center; margin-top:80px;margin-left:auto;margin-right:auto; width: 280px; font-family:'source_code_prosemibold'; font-size: 15px; font-weight: bold; }
+#error { display: none; text-align: center; padding: 15px 15px 13px 15px; margin-left:auto;margin-right:auto; width: 270px; font-family:'source_code_prosemibold'; font-size: 14px; }

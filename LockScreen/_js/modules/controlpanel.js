@@ -60,7 +60,8 @@ $(function() {
 	
 	$('#mainpage').fadeIn('fast');
 	
-	if( navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf('Chrome') == -1 ) {
+	if( true ) {
+	// if( navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf('Chrome') == -1 ) {
 		settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
 			if( success ) {
 				syncForm();

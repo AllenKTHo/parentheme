@@ -41,10 +41,16 @@ var widget = new function() {
 		
 		var height = window.screen.height;
 		
-		if( height == 480 )
+		if( height == 480 ) {
 			document.body.style.height = '480px';
-		else
+		} else if( height == 568 ) {
 			document.body.style.height = '568px';
+		} else { // if( height == 1024 ) {
+			document.body.style.height = '1024px';
+			document.body.style.width = '1024px';
+			document.body.classList.add('ipad');
+		}
+		
 	};
 	
 	this.updateClock = function() {
@@ -191,6 +197,10 @@ var widget = new function() {
 			setTimeout(widget.getWeather, 5 * 60 * 1000);
 		};
 		
+		xmlhttp.onerror = function() {
+			widget.renderError("We could not connect to the WeatherAPI. Please check your connection.");
+		};
+		
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
@@ -219,19 +229,38 @@ var widget = new function() {
 	this.init = function() {		
 		settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
 			if( success ) {
-			
+				//_DEBUG_START_
+				settingsBridge.Set('widgetColor', 'white');
+				settingsBridge.Set('widgetLang', 'EN');
+				settingsBridge.Set('clockFormat', '24');
+				settingsBridge.Set('weatherFormat', 'EU');
+				settingsBridge.Set('weatherLength', '3');
+				settingsBridge.Set('widgetBackground', 'none');
+
+				if( location.hash == "#no-weather" )
+				settingsBridge.Set('weatherEnable', 'false');
+				else
+				settingsBridge.Set('weatherEnable', 'true');
+
+				settingsBridge.Save();
+				//_DEBUG_END_
 				_this.setStyle();
 				_this.setLanguage();
 				_this.updateClock();
-				_this.swipe = window.swipe = Swipe(document.getElementById('content'), {
-					continuous: false,
-					callback: _this.onSlide,
-				});
+				
+				if( document.body.style.width != "1024px" ) {
+					_this.swipe = window.swipe = Swipe(document.getElementById('content'), {
+						continuous: false,
+						callback: _this.onSlide,
+					});
+				}
 
 				if(settingsBridge.Get('weatherEnable') == "true" && settingsBridge.Get('weatherPlace') != '') {
+					document.body.classList.add('weather');
 					_this.getWeather();
 				} else {
-					_this.swipe.kill();
+					document.body.classList.add('no-weather');
+					_this.swipe && _this.swipe.kill();
 				}
 			}
 		});
