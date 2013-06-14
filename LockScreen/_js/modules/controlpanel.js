@@ -18,6 +18,7 @@ $(function() {
 		urlOption.textinput('enable').val(settingsBridge.Get('weatherPlace'));
 		
 		setOption('coloroption', 'widgetColor');
+		setOption('backgroundoption', 'widgetBackground');
 		setOption('languageoption', 'widgetLang');
 		setOption('timeoption', 'clockFormat');
 		setOption('weatherdisplayoption', 'weatherEnable');
@@ -37,6 +38,7 @@ $(function() {
 		settingsBridge.Set('weatherPlace', urlOption.val().replace(/^((http:\/\/)*([w|m]*)(\.)*yr\.no\/place\/)/gi, '').replace(/( )*/gi, '').replace(/^\/+/gi, '').replace(/\/+$/gi, '').toLowerCase());
 		
 		saveOption('coloroption', 'widgetColor');
+		saveOption('backgroundoption', 'widgetBackground');
 		saveOption('languageoption', 'widgetLang');
 		saveOption('timeoption', 'clockFormat');
 		saveOption('weatherdisplayoption', 'weatherEnable');
