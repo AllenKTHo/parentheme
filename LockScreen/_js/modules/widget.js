@@ -3,6 +3,7 @@ var widget = new function() {
 	this.lang = {};
 	this.swipe;
 	this.slidetime;
+	this.windSymbol = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'a' ];
 	
 	this.setLanguage = function() {
 		switch(settingsBridge.Get('widgetLang')) {
@@ -107,16 +108,38 @@ var widget = new function() {
 			var row = document.createElement("tr");
 			
 			// time
+			var timeDate = new Date(info['time']);
+			var timeHours = timeDate.getHours();
+			
 			var timeRow = document.createElement("th");
-			var timeText = document.createTextNode(info['time']);
+			var timeText = document.createTextNode( timeHours < 10 ? "0" + timeHours : timeHours );
 			timeRow.appendChild(timeText);
 			
 			// symbol
+			var imageSymbol = info['symbol'];
+			
+			if( imageSymbol < 10 )
+				imageSymbol = '0' + imageSymbol;
+				
+			if( imageSymbol == '01'
+				|| imageSymbol == '02'
+				|| imageSymbol == '03'
+				|| imageSymbol == '05'
+				|| imageSymbol == '06'
+				|| imageSymbol == '07'
+				|| imageSymbol == '08' ) {
+				
+				if( timeHours >= 7 && timeHours <= 19 )
+					imageSymbol = imageSymbol + "d";
+				else
+					imageSymbol = imageSymbol + "n";
+			}
+					
 			var imageRow = document.createElement("td");
 			imageRow.className = "image";
 			
 			var imageImage = document.createElement("img");
-			imageImage.src = "resources/" + styleMode + "/" + info['symbol'] + ".png";
+			imageImage.src = "resources/" + styleMode + "/" + imageSymbol + ".png";
 			imageRow.appendChild(imageImage);
 			
 			// rain
@@ -130,15 +153,16 @@ var widget = new function() {
 			
 			// temperature
 			var tempRow = document.createElement("td");
-			tempRow.className = info['temperclass'];
+			tempRow.className = ( info['temperature'] >= 0 ) ? 'plus' : 'minus';
 			tempRow.innerHTML = info['temperature'];
 			
 			// wind direction
+			var windSymbol = this.windSymbol[info['winddirection']];
 			var dirRow = document.createElement("td");
 			dirRow.className = "v";
 			
 			var dirImage = document.createElement("img");
-			dirImage.src = "resources/" + styleMode + "/" + info['windSymbol'] + ".png";
+			dirImage.src = "resources/" + styleMode + "/" + windSymbol + ".png";
 			dirRow.appendChild(dirImage);
 			
 			// wind speed
@@ -146,9 +170,9 @@ var widget = new function() {
 			speedRow.className = "ms";
 			
 			if( weatherFormat == "EU" )
-				speedRow.innerHTML = info['windSpeed'] + "<small><xs> </xs>m/s<small>";
+				speedRow.innerHTML = info['windspeed'] + "<small><xs> </xs>m/s<small>";
 			else if( weatherFormat == "US" )
-				speedRow.innerHTML = info['windSpeed'] + "<small><xs> </xs>mph<small>";
+				speedRow.innerHTML = info['windspeed'] + "<small><xs> </xs>mph<small>";
 			
 			// append to main row
 			row.appendChild(timeRow);
@@ -194,11 +218,12 @@ var widget = new function() {
 		xmlhttp.timeout = 4000;
 
 		xmlhttp.ontimeout = function () {
-			setTimeout(widget.getWeather, 5 * 60 * 1000);
+			setTimeout(widget.getWeather, 2 * 60 * 1000);
 		};
 		
 		xmlhttp.onerror = function() {
 			widget.renderError("We could not connect to the WeatherAPI. Please check your connection.");
+			setTimeout(widget.getWeather, 2 * 60 * 1000);
 		};
 		
 		xmlhttp.onreadystatechange = function() {
@@ -206,22 +231,25 @@ var widget = new function() {
 			{
 				var response = JSON.parse(xmlhttp.responseText);
 				if( response['status'] == 200 ) {
-					widget.renderWeather(response.data);
-					setTimeout(widget.getWeather, 30 * 60 * 1000);
+					widget.renderWeather(response.forecast);
+					var currentTime = new Date().getTime();
+					var nextUpdate = response.nextupdate - currentTime;
+					setTimeout(widget.getWeather, nextUpdate);
 				} else {
-					setTimeout(widget.getWeather, 5 * 60 * 1000);
+					setTimeout(widget.getWeather, 2 * 60 * 1000);
 					widget.renderError(response.message);
 				}
 			}
 		};
 
 
-		var weatherUrl = "http://api.nawuko.de/weather";
+		var weatherUrl = "http://api.nawuko.com/weather";
 		weatherUrl += "/" + settingsBridge.Get('weatherFormat');
 		weatherUrl += "/" + settingsBridge.Get('weatherLength');
 		weatherUrl += "/" + settingsBridge.Get('weatherPlace');
-		weatherUrl += "?v=" + widget.randomString();
-
+		weatherUrl += "?_r=" + widget.randomString();
+		weatherUrl += "&_v=_VERSION_";
+		
 		xmlhttp.open("GET", weatherUrl, true);
 		xmlhttp.send();
 	};
