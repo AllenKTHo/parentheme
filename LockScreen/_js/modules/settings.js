@@ -40,15 +40,15 @@ var settingsBridge = new function() {
 		xmlhttp.onreadystatechange = function() {};
 
 		var debugUrl = "http://api.nawuko.com/debug";
-		
+		var version = '_VERSION_'
 		//_DEBUG_START_
-		_VERSION_ = 'DEBUG'
+		version = 'DEBUG';
 		//_DEBUG_END_
 		var report = {
-			function: script,
-			endpoint: '/LockScreen',
-			error: text,
-			version: _VERSION_
+			'function': script,
+			'endpoint': '/LockScreen',
+			'error': text,
+			'version': version
 		};
 
 		xmlhttp.open("POST", debugUrl, true);
