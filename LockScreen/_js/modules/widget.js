@@ -223,6 +223,7 @@ var widget = new function() {
 		
 		xmlhttp.onerror = function() {
 			widget.renderError("We could not connect to the WeatherAPI. Please check your connection.");
+			settingsBridge.sendError('getWeather', 'API unreachable');
 			setTimeout(widget.getWeather, 2 * 60 * 1000);
 		};
 		
@@ -298,6 +299,8 @@ var widget = new function() {
 					document.body.classList.add('no-weather');
 					_this.swipe && _this.swipe.kill();
 				}
+			} else {
+				settingsBridge.sendError('dataBaseConnect', data);
 			}
 		});
 	};

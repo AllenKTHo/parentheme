@@ -50,7 +50,7 @@ var dataBase = new function() {
 		this.connection = null;
 		
 		if( this.name != null && this.version != null )
-			this.connection = openDatabase(this.name, this.version, this.name + " " + this.version, 65536);
+			this.connection = openDatabase(this.name, this.version, this.name + " " + this.version, 65535);
 		
 		if( this.connection != null ) {
 			this.connected = true;

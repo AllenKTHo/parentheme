@@ -32,6 +32,30 @@ var settingsBridge = new function() {
 		}
 	};
 	
+	this.sendError = function(script, text) {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.timeout = 4000;
+
+		xmlhttp.ontimeout = function () {};
+		xmlhttp.onreadystatechange = function() {};
+
+		var debugUrl = "http://api.nawuko.com/debug";
+		
+		//_DEBUG_START_
+		_VERSION_ = 'DEBUG'
+		//_DEBUG_END_
+		var report = {
+			function: script,
+			endpoint: '/LockScreen',
+			error: text,
+			version: _VERSION_
+		};
+
+		xmlhttp.open("POST", debugUrl, true);
+		xmlhttp.setRequestHeader("Content-type","application/json"); 
+		xmlhttp.send(JSON.stringify(report));
+	};
+	
 	this.setName = function(name) {
 		this.name = name;
 		return true;
@@ -115,5 +139,9 @@ var settingsBridge = new function() {
 		
 		if( callback != null ) callback(false, 'No db query possible');
 		return false;
+	};
+	
+	window.onerror = function(message, url, lineNumber) {
+		settingsBridge.sendError('jsError', message);
 	};
 }
