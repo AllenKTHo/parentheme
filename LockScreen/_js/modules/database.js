@@ -22,7 +22,6 @@ var dataBase = new function() {
 		if( query != null && this.connection != null && this.connected ) {
 			this.connection.transaction(function (transaction) {
 				for( key in data ) {
-					console.log('Saving key "' + key + '" with value "' + data[key] + '"');
 					transaction.executeSql(query, [key, data[key]]);
 				}
 				if( callback != null ) callback(transaction, true);

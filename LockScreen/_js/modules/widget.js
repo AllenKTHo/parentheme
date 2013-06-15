@@ -231,10 +231,17 @@ var widget = new function() {
 			{
 				var response = JSON.parse(xmlhttp.responseText);
 				if( response['status'] == 200 ) {
+				
 					widget.renderWeather(response.forecast);
+					
 					var currentTime = new Date().getTime();
 					var nextUpdate = response.nextupdate - currentTime;
-					setTimeout(widget.getWeather, nextUpdate);
+					
+					if( nextUpdate > 120000 ) // 2 min
+						setTimeout(widget.getWeather, nextUpdate);
+					else
+						setTimeout(widget.getWeather, 2 * 60 * 1000);
+						
 				} else {
 					setTimeout(widget.getWeather, 2 * 60 * 1000);
 					widget.renderError(response.message);
@@ -258,19 +265,20 @@ var widget = new function() {
 		settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
 			if( success ) {
 				//_DEBUG_START_
-				settingsBridge.Set('widgetColor', 'white');
-				settingsBridge.Set('widgetLang', 'EN');
-				settingsBridge.Set('clockFormat', '24');
-				settingsBridge.Set('weatherFormat', 'EU');
-				settingsBridge.Set('weatherLength', '3');
-				settingsBridge.Set('widgetBackground', 'none');
+					settingsBridge.Set('widgetColor', 'white');
+					settingsBridge.Set('widgetLang', 'EN');
+					settingsBridge.Set('clockFormat', '24');
+					settingsBridge.Set('weatherFormat', 'EU');
+					settingsBridge.Set('weatherLength', '3');
+					settingsBridge.Set('widgetBackground', 'none');
+					settingsBridge.Set('weatherPlace', 'canada/quebec/montreal');
 
-				if( location.hash == "#no-weather" )
-				settingsBridge.Set('weatherEnable', 'false');
-				else
-				settingsBridge.Set('weatherEnable', 'true');
+					if( location.hash == "#no-weather" )
+						settingsBridge.Set('weatherEnable', 'false');
+					else
+						settingsBridge.Set('weatherEnable', 'true');
 
-				settingsBridge.Save();
+					settingsBridge.Save();
 				//_DEBUG_END_
 				_this.setStyle();
 				_this.setLanguage();
