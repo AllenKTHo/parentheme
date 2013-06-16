@@ -286,11 +286,23 @@ var widget = new function() {
 		xmlhttp.open("GET", weatherUrl, true);
 		xmlhttp.send();
 	};
-
-	this.init = function() {
+	
+	this.load = function() {
 		//_DEBUG_START_					
 			document.body.style.backgroundImage="url('//cdn.nawuko.com/images/LockBackground.jpg')";
 		//_DEBUG_END_
+		var loadScript = document.createElement('script'); loadScript.type = 'text/javascript'; loadScript.async = false; loadScript.src = 'options.js?_r=' + _this.randomString();
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(loadScript, s);
+		
+		_this.waitForSettings = setInterval(function() {
+			if( typeof Settings != "undefined" ) {
+				clearInterval(_this.waitForSettings);
+				_this.init();
+			}
+		}, 20)
+	};
+
+	this.init = function() {		
 		_this.setStyle();
 		_this.setLanguage();
 		_this.updateClock();
@@ -312,4 +324,8 @@ var widget = new function() {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', widget.init)
+window.onerror = function(message, url, lineNumber) {
+	widget.sendError('jsError', message + ' on line ' + lineNumber);
+};
+
+document.addEventListener('DOMContentLoaded', widget.load)
