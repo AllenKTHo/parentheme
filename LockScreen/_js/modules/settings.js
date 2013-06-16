@@ -58,7 +58,7 @@ var settingsBridge = new function() {
 	};
 	
 	this.hasOverride = function() {
-		return ( typeof settingsOverride != 'undefined' && settingsOverride.Enable != 'false' )
+		return ( typeof settingsOverride != 'undefined' && settingsOverride.manualOverride != 'off' )
 	};
 	
 	this.setName = function(name) {
@@ -89,10 +89,22 @@ var settingsBridge = new function() {
 	
 	this.Get = function(name) {
 		if( this.loaded ) {
-			if( this.useOverride )
-				return settingsOverride[name]
-			else
+			if( this.useOverride ) {
+				var tempVar = settingsOverride[name]
+				
+				if( name == 'weatherPlace' )
+					return tempVar.replace(/^((http:\/\/)*([w|m]*)(\.)*yr\.no\/place\/)/gi, '').replace(/( )*/gi, '').replace(/^\/+/gi, '').replace(/\/+$/gi, '').toLowerCase();
+				
+				if( tempVar == 'on' ) {
+					return 'true';
+				} else if ( tempVar == 'off' ) {
+					return 'false';
+				}
+				
+				return tempVar;
+			} else {
 				return this.storage[name];
+			}
 		}
 			
 		return false;
@@ -113,6 +125,14 @@ var settingsBridge = new function() {
 		
 		if( dataBase != null && this.name != null && this.version != null && !this.hasOverride() ) {
 			if( !dataBase.connected && !dataBase.Connect(this.name, this.version) ) {
+				if( typeof settingsOverride != 'undefined' ) { // WebSQL failed fallback to our options file.
+					this.loaded = true;
+					this.useOverride = true;
+					
+					if( callback != null ) callback(true);
+					return true;
+				}
+
 				if( callback != null ) callback(false, 'No database connect');
 				return false;
 			}

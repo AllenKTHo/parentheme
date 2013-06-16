@@ -1,33 +1,35 @@
 var settingsOverride = new function() {
 
-	// Set from 'false' to 'true' to enable the config file
-	this.Enable = 'true';
+	// Turn these manual settings: 'on' or 'off'
+	this.manualOverride = 'off';
 	
-	// Font and Icon color, options are: 'white', 'black'
+	// Color: 'white' or 'black'
 	this.widgetColor = 'white';
 	
-	// Widget Background, options are: 'none', 'translucent'
+	// Background: 'none' or 'translucent'
 	this.widgetBackground = 'none';
 	
-	// Widget Languages, options are; 'EN', 'FR', 'DE', 'IT', 'ES', 'DA'
+	// Language: 'EN', 'FR', 'DE', 'IT', 'ES' or 'DA'
 	this.widgetLang = 'EN';
 	
-	// Clock 24h-mode, options are '24', '12'
+	// Clock: '24' or '12'
 	this.clockFormat = '24';
 	
-	// Enables the weather widget, options are: 'true', 'false'
-	this.weatherEnable = 'true';
+	// Weather forecast: 'on' or 'off'
+	this.weatherEnable = 'off';
 	
-	// Set the weather format, options are:
+	// Weather forecast format:
 	// 'US' for F " mph
 	// 'EU' for C mm m/s
 	this.weatherFormat = 'EU';
 	
-	// Weather URL - go to http://m.yr.no/, search for your city and copy the country/state/city/ part of the URL
-	// Example: canada/ontario/ottawa
-	this.weatherPlace = '';
+	// Forecast location
+	// Go to yr.no
+	// Search for your city
+	// Copy the country/state/city/ part of the URL
+	this.weatherPlace = 'United_Kingdom/England/London';
 	
-	// Forecast length, options are:
+	// Forecast length:
 	// '4' for 1 Day
 	// '8' for 2 Days
 	// '12' for 3 Days

@@ -53,7 +53,8 @@ var dataBase = new function() {
 			try {
 				this.connection = openDatabase(this.name, this.version, this.name + " " + this.version, 2048);
 			} catch(err) {
-				// GOT DAMM APPLE .... WHY ARE YOU DOING THIS CRAP!
+				return false;
+				// GOT DAMM APPLE .... WHY ARE YOU DOING THIS CRAP! ... 
 			}
 		}
 		
