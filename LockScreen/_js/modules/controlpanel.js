@@ -65,7 +65,7 @@ $(function() {
 	isSafari = true;
 	//_DEBUG_END_
 	if( isSafari ) {
-		settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
+		settingsBridge.Load('parenthemeLS', '1.1', function(success, data) {
 			if( success ) {
 				syncForm();
 				

@@ -263,7 +263,7 @@ var widget = new function() {
 	};
 
 	this.init = function() {		
-		settingsBridge.Load('parenthemeLS', '1.0', function(success, data) {
+		settingsBridge.Load('parenthemeLS', '1.1', function(success, data) {
 			if( success ) {
 				//_DEBUG_START_
 					settingsBridge.Set('widgetColor', 'white');

@@ -49,8 +49,13 @@ var dataBase = new function() {
 		
 		this.connection = null;
 		
-		if( this.name != null && this.version != null )
-			this.connection = openDatabase(this.name, this.version, this.name + " " + this.version, 2048);
+		if( this.name != null && this.version != null ) {
+			try {
+				this.connection = openDatabase(this.name, this.version, this.name + " " + this.version, 2048);
+			} catch(err) {
+				// GOT DAMM APPLE .... WHY ARE YOU DOING THIS CRAP!
+			}
+		}
 		
 		if( this.connection != null ) {
 			this.connected = true;
