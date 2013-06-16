@@ -287,27 +287,27 @@ var widget = new function() {
 		xmlhttp.send();
 	};
 
-	this.init = function() {		´
+	this.init = function() {
 		//_DEBUG_START_					
 			document.body.style.backgroundImage="url('//cdn.nawuko.com/images/LockBackground.jpg')";
 		//_DEBUG_END_
-		this.setStyle();
-		this.setLanguage();
-		this.updateClock();
+		_this.setStyle();
+		_this.setLanguage();
+		_this.updateClock();
 		
 		if( document.body.style.width != "1024px" ) {
-			this.swipe = window.swipe = Swipe(document.getElementById('content'), {
+			_this.swipe = this.swipe = Swipe(document.getElementById('content'), {
 				continuous: false,
 				callback: _this.onSlide,
 			});
 		}
 
-		if( Settings.weatherEnable == "on" && this.getPlace() != '') {
+		if( Settings.weatherEnable == "on" && _this.getPlace() != '') {
 			document.body.classList.add('weather');
-			this.getWeather();
+			_this.getWeather();
 		} else {
 			document.body.classList.add('no-weather');
-			this.swipe && this.swipe.kill();
+			_this.swipe && _this.swipe.kill();
 		}
 	}
 }
