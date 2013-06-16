@@ -58,7 +58,7 @@ var settingsBridge = new function() {
 	};
 	
 	this.hasOverride = function() {
-		return ( settingsOverride != null && settingsOverride.Enable != 'false' )
+		return ( typeof settingsOverride != 'undefined' && settingsOverride.Enable != 'false' )
 	};
 	
 	this.setName = function(name) {
