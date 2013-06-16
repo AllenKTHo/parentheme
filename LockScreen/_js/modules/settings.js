@@ -119,19 +119,22 @@ var settingsBridge = new function() {
 		return false;
 	};
 	
+	this.setOverride = function(callback) {
+		this.loaded = true;
+		this.useOverride = true;
+		
+		if( callback != null ) callback(true);
+		return true;
+	};
+	
 	this.Load = function(name, version, callback) {
 		if( typeof name !== "undefined" && name !== null ) this.name = name;
 		if( typeof version !== "undefined" && version !== null ) this.version = version;
 		
 		if( dataBase != null && this.name != null && this.version != null && !this.hasOverride() ) {
 			if( !dataBase.connected && !dataBase.Connect(this.name, this.version) ) {
-				if( typeof settingsOverride != 'undefined' ) { // WebSQL failed fallback to our options file.
-					this.loaded = true;
-					this.useOverride = true;
-					
-					if( callback != null ) callback(true);
-					return true;
-				}
+				if( typeof settingsOverride != 'undefined' ) // WebSQL failed fallback to our options file.
+					return this.setOverride(callback);
 
 				if( callback != null ) callback(false, 'No database connect');
 				return false;
@@ -166,11 +169,7 @@ var settingsBridge = new function() {
 
 			return false;
 		} else if ( this.hasOverride() ) {
-			this.loaded = true;
-			this.useOverride = true;
-			
-			if( callback != null ) callback(true);
-			return true;
+			return this.setOverride(callback);
 		}
 		
 		if( callback != null ) callback(false, 'No db query possible');

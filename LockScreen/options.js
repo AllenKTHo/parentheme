@@ -26,7 +26,7 @@ var settingsOverride = new function() {
 	// Forecast location
 	// Go to yr.no
 	// Search for your city
-	// Copy the country/state/city/ part of the URL
+	// Copy the country/state/city part of the URL
 	this.weatherPlace = 'United_Kingdom/England/London';
 	
 	// Forecast length:
