@@ -272,7 +272,7 @@ var widget = new function() {
 					settingsBridge.Set('weatherFormat', 'EU');
 					settingsBridge.Set('weatherLength', '3');
 					settingsBridge.Set('widgetBackground', 'none');
-					settingsBridge.Set('weatherPlace', 'canada/quebec/montreal');
+					settingsBridge.Set('weatherPlace', 'norway/sør-trøndelag/trondheim/trondheim');
 
 					if( location.hash == "#no-weather" )
 						settingsBridge.Set('weatherEnable', 'false');
@@ -280,6 +280,8 @@ var widget = new function() {
 						settingsBridge.Set('weatherEnable', 'true');
 
 					settingsBridge.Save();
+					
+					document.body.style.backgroundImage="url('//cdn.nawuko.com/images/LockBackground.jpg')";
 				//_DEBUG_END_
 				_this.setStyle();
 				_this.setLanguage();
