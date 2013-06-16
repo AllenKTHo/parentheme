@@ -3,6 +3,7 @@ var settingsBridge = new function() {
 	this.name;
 	this.version;
 	this.loaded = true;
+	this.useOverride = false;
 	this.storage = {};
 	
 	this.setDefaults = function() {
@@ -56,6 +57,10 @@ var settingsBridge = new function() {
 		xmlhttp.send(JSON.stringify(report));
 	};
 	
+	this.hasOverride = function() {
+		return ( settingsOverride != null && settingsOverride.Enable != 'false' )
+	};
+	
 	this.setName = function(name) {
 		this.name = name;
 		return true;
@@ -69,7 +74,7 @@ var settingsBridge = new function() {
 	};
 	
 	this.Set = function(name, value, save) {
-		if( this.loaded ) {
+		if( this.loaded && !this.useOverride ) {
 			this.storage[name] = value;
 			
 			if( save ) {
@@ -83,14 +88,18 @@ var settingsBridge = new function() {
 	};
 	
 	this.Get = function(name) {
-		if( this.loaded )
-			return this.storage[name];
+		if( this.loaded ) {
+			if( this.useOverride )
+				return settingsOverride[name]
+			else
+				return this.storage[name];
+		}
 			
 		return false;
 	};
 	
 	this.Save = function() {
-		if( this.loaded ) {
+		if( this.loaded && !this.useOverride ) {
 			dataBase.Batch('INSERT OR REPLACE INTO settings ("name", "value") VALUES (?, ?)', this.storage);
 			return true;
 		}
@@ -102,7 +111,7 @@ var settingsBridge = new function() {
 		if( typeof name !== "undefined" && name !== null ) this.name = name;
 		if( typeof version !== "undefined" && version !== null ) this.version = version;
 		
-		if( dataBase != null && this.name != null && this.version != null ) {
+		if( dataBase != null && this.name != null && this.version != null && !this.hasOverride() ) {
 			if( !dataBase.connected && !dataBase.Connect(this.name, this.version) ) {
 				if( callback != null ) callback(false, 'No database connect');
 				return false;
@@ -123,6 +132,7 @@ var settingsBridge = new function() {
 							self.loaded = true;
 							
 							if( callback != null ) callback(true);
+							return true;
 						} else {
 							this.loaded = false;
 							if( callback != null ) callback(false, store);
@@ -135,6 +145,12 @@ var settingsBridge = new function() {
 			});
 
 			return false;
+		} else if ( this.hasOverride() ) {
+			this.loaded = true;
+			this.useOverride = true;
+			
+			if( callback != null ) callback(true);
+			return true;
 		}
 		
 		if( callback != null ) callback(false, 'No db query possible');
