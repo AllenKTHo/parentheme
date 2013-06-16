@@ -5,8 +5,32 @@ var widget = new function() {
 	this.slidetime;
 	this.windSymbol = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'a' ];
 	
+	this.sendError = function(script, text) {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.timeout = 4000;
+
+		xmlhttp.ontimeout = function () {};
+		xmlhttp.onreadystatechange = function() {};
+
+		var debugUrl = "http://api.nawuko.com/debug";
+		var version = '_VERSION_'
+		//_DEBUG_START_
+		version = 'DEBUG';
+		//_DEBUG_END_
+		var report = {
+			'function': script,
+			'endpoint': '/LockScreen',
+			'error': text,
+			'version': version
+		};
+
+		xmlhttp.open("POST", debugUrl, true);
+		xmlhttp.setRequestHeader("Content-type","application/json"); 
+		xmlhttp.send(JSON.stringify(report));
+	};
+	
 	this.setLanguage = function() {
-		switch(settingsBridge.Get('widgetLang')) {
+		switch(Settings.widgetLang) {
 			case 'DE':
 				this.lang['WEEKS'] = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA'];
 				this.lang['MONTHS'] = ['JAN', 'FEB', 'M&Auml;R', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'];
@@ -35,10 +59,10 @@ var widget = new function() {
 	};
 
 	this.setStyle = function() {
-		document.body.classList.add(settingsBridge.Get('widgetColor'));
+		document.body.classList.add(Settings.widgetColor);
 		
-		if( settingsBridge.Get('widgetBackground') != 'none' )
-			document.body.classList.add(settingsBridge.Get('widgetBackground'));
+		if( Settings.widgetBackground != 'none' )
+			document.body.classList.add(Settings.widgetBackground);
 		
 		var height = window.screen.height;
 		
@@ -70,7 +94,7 @@ var widget = new function() {
 		
 		// clock function
 		var clockHour = clockDate.getHours();
-		if( clockHour > 12 && settingsBridge.Get('clockFormat') == 12 ) {
+		if( clockHour > 12 && Settings.clockFormat == '12' ) {
 			clockHour = clockHour - 12;  // 12 hour mode!
 		}
 	
@@ -97,9 +121,6 @@ var widget = new function() {
 	};
 	
 	this.renderWeather = function(data) {
-
-		var styleMode = settingsBridge.Get('widgetColor');
-		var weatherFormat = settingsBridge.Get('weatherFormat');
 			
 		var table = document.getElementById("weather");
 		
@@ -139,16 +160,16 @@ var widget = new function() {
 			imageRow.className = "image";
 			
 			var imageImage = document.createElement("img");
-			imageImage.src = "resources/" + styleMode + "/" + imageSymbol + ".png";
+			imageImage.src = "resources/" + Settings.widgetColor + "/" + imageSymbol + ".png";
 			imageRow.appendChild(imageImage);
 			
 			// rain
 			var rainRow = document.createElement("td");
 			rainRow.className = "ned";
 			
-			if( weatherFormat == "EU" )
+			if( Settings.weatherFormat == "EU" )
 				rainRow.innerHTML = info['rain'] + "<small><xs> </xs>mm</small>";
-			else if( weatherFormat == "US" )
+			else if( Settings.weatherFormat == "US" )
 				rainRow.innerHTML = info['rain'] + "<xs> </xs>";
 			
 			// temperature
@@ -162,16 +183,16 @@ var widget = new function() {
 			dirRow.className = "v";
 			
 			var dirImage = document.createElement("img");
-			dirImage.src = "resources/" + styleMode + "/" + windSymbol + ".png";
+			dirImage.src = "resources/" + Settings.widgetColor + "/" + windSymbol + ".png";
 			dirRow.appendChild(dirImage);
 			
 			// wind speed
 			var speedRow = document.createElement("td");
 			speedRow.className = "ms";
 			
-			if( weatherFormat == "EU" )
+			if( Settings.weatherFormat == "EU" )
 				speedRow.innerHTML = info['windspeed'] + "<small><xs> </xs>m/s<small>";
-			else if( weatherFormat == "US" )
+			else if( Settings.weatherFormat == "US" )
 				speedRow.innerHTML = info['windspeed'] + "<small><xs> </xs>mph<small>";
 			
 			// append to main row
@@ -206,7 +227,11 @@ var widget = new function() {
 			string += chars.substring(rnum, rnum + 1);
 		}
 		return string;
-	}
+	};
+	
+	this.getPlace = function() {
+		return Settings.weatherPlace.replace(/^((http:\/\/)*([w|m]*)(\.)*yr\.no\/place\/)/gi, '').replace(/( )*/gi, '').replace(/^\/+/gi, '').replace(/\/+$/gi, '').toLowerCase();
+	};
 	
 	this.getWeather = function() {
 	
@@ -223,7 +248,7 @@ var widget = new function() {
 		
 		xmlhttp.onerror = function() {
 			widget.renderError("We could not connect to the WeatherAPI. Please check your connection.");
-			settingsBridge.sendError('getWeather', 'API unreachable');
+			widget.sendError('getWeather', 'API unreachable');
 			setTimeout(widget.getWeather, 2 * 60 * 1000);
 		};
 		
@@ -252,9 +277,9 @@ var widget = new function() {
 
 
 		var weatherUrl = "http://api.nawuko.com/weather";
-		weatherUrl += "/" + settingsBridge.Get('weatherFormat');
-		weatherUrl += "/" + settingsBridge.Get('weatherLength');
-		weatherUrl += "/" + settingsBridge.Get('weatherPlace');
+		weatherUrl += "/" + Settings.weatherFormat;
+		weatherUrl += "/" + Settings.weatherLength;
+		weatherUrl += "/" + widget.getPlace();
 		weatherUrl += "?_r=" + widget.randomString();
 		weatherUrl += "&_v=_VERSION_";
 		
@@ -262,50 +287,29 @@ var widget = new function() {
 		xmlhttp.send();
 	};
 
-	this.init = function() {		
-		settingsBridge.Load('parenthemeLS', '1.1', function(success, data) {
-			if( success ) {
-				//_DEBUG_START_
-					settingsBridge.Set('widgetColor', 'white');
-					settingsBridge.Set('widgetLang', 'EN');
-					settingsBridge.Set('clockFormat', '24');
-					settingsBridge.Set('weatherFormat', 'EU');
-					settingsBridge.Set('weatherLength', '3');
-					settingsBridge.Set('widgetBackground', 'none');
-					settingsBridge.Set('weatherPlace', 'norway/sør-trøndelag/trondheim/trondheim');
+	this.init = function() {		´
+		//_DEBUG_START_					
+			document.body.style.backgroundImage="url('//cdn.nawuko.com/images/LockBackground.jpg')";
+		//_DEBUG_END_
+		this.setStyle();
+		this.setLanguage();
+		this.updateClock();
+		
+		if( document.body.style.width != "1024px" ) {
+			this.swipe = window.swipe = Swipe(document.getElementById('content'), {
+				continuous: false,
+				callback: _this.onSlide,
+			});
+		}
 
-					if( location.hash == "#no-weather" )
-						settingsBridge.Set('weatherEnable', 'false');
-					else
-						settingsBridge.Set('weatherEnable', 'true');
-
-					settingsBridge.Save();
-					
-					document.body.style.backgroundImage="url('//cdn.nawuko.com/images/LockBackground.jpg')";
-				//_DEBUG_END_
-				_this.setStyle();
-				_this.setLanguage();
-				_this.updateClock();
-				
-				if( document.body.style.width != "1024px" ) {
-					_this.swipe = window.swipe = Swipe(document.getElementById('content'), {
-						continuous: false,
-						callback: _this.onSlide,
-					});
-				}
-
-				if(settingsBridge.Get('weatherEnable') == "true" && settingsBridge.Get('weatherPlace') != '') {
-					document.body.classList.add('weather');
-					_this.getWeather();
-				} else {
-					document.body.classList.add('no-weather');
-					_this.swipe && _this.swipe.kill();
-				}
-			} else {
-				settingsBridge.sendError('dataBaseConnect', data);
-			}
-		});
-	};
+		if( Settings.weatherEnable == "on" && this.getPlace() != '') {
+			document.body.classList.add('weather');
+			this.getWeather();
+		} else {
+			document.body.classList.add('no-weather');
+			this.swipe && this.swipe.kill();
+		}
+	}
 }
 
 document.addEventListener('DOMContentLoaded', widget.init)

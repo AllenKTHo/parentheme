@@ -1,7 +1,4 @@
-var settingsOverride = new function() {
-
-	// Turn these manual settings: 'on' or 'off'
-	this.manualOverride = 'off';
+var Settings = new function() {
 	
 	// Color: 'white' or 'black'
 	this.widgetColor = 'white';
