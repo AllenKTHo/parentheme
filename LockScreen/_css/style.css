@@ -26,7 +26,7 @@ body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackg
 #forecast .ms { width:50px; }
 
 #clock, #forecast { border-radius: 10px; }
-#clock { width: 290px; padding: 5px 0; }
+#clock { width: 300px; padding: 5px 0; }
 #forecast { width: 300px; padding-bottom: 2px; }
 
 .white { color: #FFF; }
@@ -40,7 +40,7 @@ body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackg
 
 .ipad { background-size:1024px 1024px }
 .ipad .swipe { visibility: visible; }
-.ipad.weather #clock { margin: -400px 0 0 10px; width: 300px;border-bottom-left-radius: 0;border-bottom-right-radius: 0}
+.ipad.weather #clock { margin: -400px 0 0 10px;border-bottom-left-radius: 0;border-bottom-right-radius: 0}
 .ipad.weather #forecast { margin: -238px 0 0 10px; border-top-left-radius: 0; border-top-right-radius: 0}
 .ipad .swipe-wrap > div { position: absolute; }
 
