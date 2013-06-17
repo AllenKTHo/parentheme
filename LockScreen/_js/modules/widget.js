@@ -67,22 +67,22 @@ var widget = new function() {
 		
 		var height = window.screen.height;
 		//_DEBUG_START_					
-			height = 568 // iphone 5 test
+			height = 568; // iphone 5 test
 		//_DEBUG_END_
 		
 		if( height == 480 ) {
 			document.body.style.height = '480px';
 			document.body.classList.add('iphone-4');
-			this.device = 'iphone-4';
+			_this.device = 'iphone-4';
 		} else if( height == 568 ) {
 			document.body.style.height = '568px';
 			document.body.classList.add('iphone-5');
-			this.device = 'iphone-5';
+			_this.device = 'iphone-5';
 		} else { // if( height == 1024 ) {
 			document.body.style.height = '1024px';
 			document.body.style.width = '1024px';
 			document.body.classList.add('ipad');
-			this.device = 'ipad';
+			_this.device = 'ipad';
 		}
 		
 		if( _this.device == 'ipad' )
@@ -98,12 +98,12 @@ var widget = new function() {
 		// date function
 		var clockDate = new Date();
 		var clockDay = clockDate.getDate();
-		if (clockDay < 10){ clockDay = "0" + clockDay; }
+		if (clockDay < 10){ clockDay = '0' + clockDay; }
 		
 		var dayString = widget.lang['WEEKS'][clockDate.getDay()]; // use global scope for updates!
 		var monthString = widget.lang['MONTHS'][clockDate.getMonth()];
 
-		dateEle.innerHTML = dayString + " " + clockDay + " " + monthString;
+		dateEle.innerHTML = dayString + ' ' + clockDay + ' ' + monthString;
 		
 		// clock function
 		var clockHour = clockDate.getHours();
@@ -112,41 +112,41 @@ var widget = new function() {
 		}
 	
 		if( clockHour < 10 ) {
-			clockHour = "0" + clockHour;
+			clockHour = '0' + clockHour;
 		}
 
 		var clockMinute = clockDate.getMinutes();
 		if ( clockMinute < 10 ) {
-			clockMinute = "0" + clockMinute;
+			clockMinute = '0' + clockMinute;
 		}
 
-		timeEle.innerHTML = clockHour + ":" + clockMinute;
+		timeEle.innerHTML = clockHour + ':' + clockMinute;
 
 		// calculate next minute tick ( seconds left + 10ms )
 		setTimeout(widget.updateClock, (60 - (new Date()).getSeconds()) * 1000 + 10);
 	};
 	
 	this.renderError = function(message) {
-		var error = document.getElementById("error");
+		var error = document.getElementById('error');
 		
 		error.innerHTML = message;
-		error.style.display = "block";
+		error.style.display = 'block';
 	};
 	
 	this.renderWeather = function(data) {
 			
-		var table = document.getElementById("weather");
+		var table = document.getElementById('weather');
 		
 		for(index in data) {
 			var info = data[index];
-			var row = document.createElement("tr");
+			var row = document.createElement('tr');
 			
 			// time
 			var timeDate = new Date(info['time']);
 			var timeHours = timeDate.getHours();
 			
-			var timeRow = document.createElement("th");
-			var timeText = document.createTextNode( timeHours < 10 ? "0" + timeHours : timeHours );
+			var timeRow = document.createElement('th');
+			var timeText = document.createTextNode( timeHours < 10 ? '0' + timeHours : timeHours );
 			timeRow.appendChild(timeText);
 			
 			// symbol
@@ -219,7 +219,7 @@ var widget = new function() {
 			table.appendChild(row);
 		}
 		
-		table.style.display = "block";
+		table.style.display = 'block';
 	};
 	
 	this.onSlide = function(page) {
@@ -232,7 +232,7 @@ var widget = new function() {
 	};
 	
 	this.randomString = function() {
-		var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+		var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 		var string_length = 12;
 		var string = '';
 		for( var i=0; i < string_length; i++ ) {
@@ -248,9 +248,9 @@ var widget = new function() {
 	
 	this.getWeather = function() {
 	
-		var table = document.getElementById("weather");			
+		var table = document.getElementById('weather');			
 		table.innerHTML = ''; // empty table
-		table.style.display = "none";
+		table.style.display = 'none';
 	
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.timeout = 4000;
@@ -260,7 +260,7 @@ var widget = new function() {
 		};
 		
 		xmlhttp.onerror = function() {
-			widget.renderError("We could not connect to the WeatherAPI. Please check your connection.");
+			widget.renderError('We could not connect to the WeatherAPI. Please check your connection.');
 			widget.sendError('getWeather', 'API unreachable');
 			setTimeout(widget.getWeather, 2 * 60 * 1000);
 		};
@@ -296,19 +296,19 @@ var widget = new function() {
 		weatherUrl += "?_r=" + widget.randomString();
 		weatherUrl += "&_v=_VERSION_";
 		
-		xmlhttp.open("GET", weatherUrl, true);
+		xmlhttp.open('GET', weatherUrl, true);
 		xmlhttp.send();
 	};
 	
 	this.load = function() {
 		//_DEBUG_START_					
-			document.body.style.backgroundImage="url('//cdn.nawuko.com/images/LockBackground_iPhone5.png')";
+			document.body.style.backgroundImage = "url('//cdn.nawuko.com/images/LockBackground_iPhone5.png')";
 		//_DEBUG_END_
 		var loadScript = document.createElement('script'); loadScript.type = 'text/javascript'; loadScript.async = false; loadScript.src = '../() LS Options/options.js?_r=' + _this.randomString();
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(loadScript, s);
 		
 		_this.waitForSettings = setInterval(function() {
-			if( typeof Settings != "undefined" ) {
+			if( typeof Settings != 'undefined' ) {
 				clearInterval(_this.waitForSettings);
 				_this.init();
 			}
@@ -318,23 +318,26 @@ var widget = new function() {
 	this.init = function() {
 
 		//_DEBUG_START_					
-			Settings.weatherEnable = "on";
-			Settings.widgetBackground = "translucent";
-			Settings.widgetLayout = "single-page";
+			Settings.weatherEnable = 'on';
+			Settings.widgetBackground = 'translucent';
+			Settings.widgetLayout = 'single-page';
 		//_DEBUG_END_
 
 		_this.setStyle();
 		_this.setLanguage();
 		_this.updateClock();
 		
-		if( _this.device != 'ipad' && Settings.widgetLayout != "single-page" ) {
+		if( _this.device != 'ipad' && Settings.widgetLayout == 'single-page' && Settings.weatherLength > 8 )
+			Settings.weatherLength = 8;
+		
+		if( _this.device != 'ipad' && Settings.widgetLayout != 'single-page' ) {
 			_this.swipe = this.swipe = Swipe(document.getElementById('content'), {
 				continuous: false,
 				callback: _this.onSlide,
 			});
 		}
 
-		if( Settings.weatherEnable == "on" && _this.getPlace() != '') {
+		if( Settings.weatherEnable == 'on' && _this.getPlace() != '') {
 			document.body.classList.add('weather');
 			_this.getWeather();
 		} else {
