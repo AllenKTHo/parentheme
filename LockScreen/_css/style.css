@@ -12,7 +12,7 @@ body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackg
 #weather, #weather tr, #weather th, #weather td, table { font-family:'source_code_prosemibold'; font-size: 20px; text-align: right; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; }
 #forecast small { font-size: 11px; }
 #forecast xs { font-size: 5px; }
-#forecast table { margin: 0px auto 10px auto; width: 280px; }
+#forecast table { margin: 0px auto 10px auto; width: 280px; padding-left: 3px;}
 #forecast th { width:20px; }
 #forecast tr { display:block; height:32px; }
 
