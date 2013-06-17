@@ -65,9 +65,9 @@ var widget = new function() {
 		if( Settings.widgetBackground != 'none' )
 			document.body.classList.add(Settings.widgetBackground);
 		
-		var height = window.screen.height;
+		var height = winrdow.screen.height;
 		//_DEBUG_START_					
-			height = 480 // iphone 5 test
+			height = 568 // iphone 5 test
 		//_DEBUG_END_
 		
 		if( height == 480 ) {
