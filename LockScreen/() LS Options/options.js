@@ -5,6 +5,9 @@ this.widgetColor = 'white';
  
 // Background: 'none' or 'translucent'
 this.widgetBackground = 'none';
+
+// Layout: 'single-page' or 'two-page'
+this.widgetLayout = 'two-page';
  
 // Language: 'EN', 'FR', 'DE', 'IT', 'ES' or 'DA'
 this.widgetLang = 'EN';
