@@ -317,6 +317,7 @@ var widget = new function() {
 	};
 	
 	this.load = function() {
+		document.body.style.backgroundImage = "url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg?_r=" + _this.randomString() + "')";
 		//_DEBUG_START_					
 			document.body.style.backgroundImage = "url('//cdn.nawuko.com/images/LockBackground_iPhone5.png')";
 		//_DEBUG_END_
