@@ -58,6 +58,21 @@ var widget = new function() {
 				break;	
 		}
 	};
+	
+	this.setOrientation = function() {
+	
+		window.orientation = 0;
+	
+		document.body.classList.remove('landscape');
+		document.body.classList.remove('portrait');
+		
+		if( typeof window.orientation === 'undefined' || Math.abs( window.orientation ) === 90 ) {
+			document.body.classList.add('landscape');
+		} else {
+			document.body.classList.add('portrait');
+		}
+	
+	}
 
 	this.setStyle = function() {
 		document.body.classList.add(Settings.widgetColor);
@@ -66,27 +81,28 @@ var widget = new function() {
 			document.body.classList.add(Settings.widgetBackground);
 		
 		var height = window.screen.height;
-		//_DEBUG_START_					
-			height = 568; // iphone 5 test
+		//_DEBUG_START_	
+			if( location.hash == '#ipad' )
+				height = 1024; // ipad test
+			else if( location.hash == '#iphone4' )
+				height = 480; // iphone 4 test
+			else
+				height = 568; // iphone 5 test
 		//_DEBUG_END_
 		
 		if( height == 480 ) {
-			document.body.style.height = '480px';
 			document.body.classList.add('iphone-4');
 			_this.device = 'iphone-4';
 		} else if( height == 568 ) {
-			document.body.style.height = '568px';
 			document.body.classList.add('iphone-5');
 			_this.device = 'iphone-5';
 		} else { // if( height == 1024 ) {
-			document.body.style.height = '1024px';
-			document.body.style.width = '1024px';
 			document.body.classList.add('ipad');
 			_this.device = 'ipad';
 		}
 		
 		if( _this.device == 'ipad' )
-			document.body.classList.add('two-page');
+			document.body.classList.add('single-page');
 		else
 			document.body.classList.add(Settings.widgetLayout);
 	};
@@ -324,10 +340,11 @@ var widget = new function() {
 		//_DEBUG_END_
 
 		_this.setStyle();
+		_this.setOrientation();
 		_this.setLanguage();
 		_this.updateClock();
 		
-		if( _this.device != 'ipad' && Settings.widgetLayout == 'single-page' && Settings.weatherLength > 8 )
+		if( _this.device == 'ipad' || ( Settings.widgetLayout == 'single-page' && Settings.weatherLength > 8 ) )
 			Settings.weatherLength = 8;
 		
 		if( _this.device != 'ipad' && Settings.widgetLayout != 'single-page' ) {
@@ -351,4 +368,5 @@ window.onerror = function(message, url, lineNumber) {
 	widget.sendError('jsError', message + ' on line ' + lineNumber);
 };
 
-document.addEventListener('DOMContentLoaded', widget.load)
+window.addEventListener('DOMContentLoaded', widget.load);
+window.addEventListener('orientationchange', widget.setOrientation);
