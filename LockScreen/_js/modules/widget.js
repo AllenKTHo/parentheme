@@ -60,9 +60,9 @@ var widget = new function() {
 	};
 	
 	this.setOrientation = function() {
-	
-		window.orientation = 0;
-	
+		//_DEBUG_START_
+			window.orientation = 0;
+		//_DEBUG_END_
 		document.body.classList.remove('landscape');
 		document.body.classList.remove('portrait');
 		
