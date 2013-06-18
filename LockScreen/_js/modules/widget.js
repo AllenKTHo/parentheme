@@ -320,7 +320,7 @@ var widget = new function() {
 		//_DEBUG_START_					
 			document.body.style.backgroundImage = "url('//cdn.nawuko.com/images/LockBackground_iPhone5.png')";
 		//_DEBUG_END_
-		var loadScript = document.createElement('script'); loadScript.type = 'text/javascript'; loadScript.async = false; loadScript.src = '../() LS Options/options.js?_r=' + _this.randomString();
+		var loadScript = document.createElement('script'); loadScript.type = 'text/javascript'; loadScript.async = false; loadScript.src = 'options.js?_r=' + _this.randomString();
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(loadScript, s);
 		
 		_this.waitForSettings = setInterval(function() {
