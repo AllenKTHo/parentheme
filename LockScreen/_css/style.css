@@ -1,7 +1,7 @@
 @font-face { font-family:source_code_problack;src:url(sourcecodepro.svg#source_code_problack) format(svg); }
 @font-face { font-family:source_code_prosemibold;src:url(sourcecodepro.svg#source_code_prosemibold) format(svg); }
 
-body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg'); background-repeat:no-repeat; font-family:source_code_problack; margin:0; padding:0; }
+body { background-repeat:no-repeat; font-family:'source_code_problack'; margin:0; padding:0; }
 
 #forecast, #clock { width: 300px; margin: 0 auto; }
 
@@ -57,4 +57,4 @@ body.ipad { height: 1024px; width: 1024px; background-size:1024px 1024px; }
 .ipad .swipe {width: 768px; height: 692px; display:table;}
 .ipad .swipe-wrap { display:table-cell; vertical-align:middle; }
 
-#error { display: none; text-align: center; padding: 15px 15px 13px 15px; margin-left:auto;margin-right:auto; width: 270px; font-family:'source_code_prosemibold'; font-size: 14px; }
+#error { display: none; text-align: center; padding: 15px 15px 13px 15px; margin-left:auto;margin-right:auto; width: 270px; font-family: "Helvetica Neue", Helvetica; font-size: 14px; }

@@ -143,7 +143,11 @@ var widget = new function() {
 	};
 	
 	this.renderError = function(message) {
-		var error = document.getElementById('error');
+		var error = document.getElementById('error')
+			, table = document.getElementById('weather');
+			
+		table.innerHTML = '';
+		table.style.display = 'none';
 		
 		error.innerHTML = message;
 		error.style.display = 'block';
@@ -277,7 +281,6 @@ var widget = new function() {
 		
 		xmlhttp.onerror = function() {
 			widget.renderError('We could not connect to the WeatherAPI. Please check your connection.');
-			widget.sendError('getWeather', 'API unreachable');
 			setTimeout(widget.getWeather, 2 * 60 * 1000);
 		};
 		
