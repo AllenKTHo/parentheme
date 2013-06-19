@@ -3,7 +3,7 @@
 
 body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg'); background-repeat:no-repeat; font-family:source_code_problack; margin:0; padding:0; }
 
-#forecast, #clock { width: 320px; margin: 0 auto; }
+#forecast, #clock { width: 300px; margin: 0 auto; }
 
 #time { font-size:87px;margin:0 auto -12px auto;text-align: center; }
 #date { font-size:48px;margin:0 auto 0 auto; text-align: center; }
@@ -31,8 +31,7 @@ body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackg
 
 body.iphone-4 { height: 480px; width: 320px; background-size:320px 480px; }
 body.iphone-5 { height: 568px; width: 320px; background-size:320px 568px; }
-body.ipad.portrait { height: 1024px; width: 768px; background-size:768px 1024px; }
-body.ipad.landscape { height: 768px; width: 1024px; background-size:1024px 768px; }
+body.ipad { height: 1024px; width: 1024px; background-size:1024px 1024px; }
 
 .white { color: #FFF; }
 .black { color: #000; }
@@ -53,14 +52,9 @@ body.ipad.landscape { height: 768px; width: 1024px; background-size:1024px 768px
 .single-page.iphone-5 .swipe-wrap { margin-top: 85px; }
 .single-page.ipad .swipe-wrap { margin: auto; height: 100%; }
 
-.ipad.no-weather .middle, .ipad.no-weather .cell { height: 100%; }
-.ipad.weather .swipe-wrap > div { position: absolute; }
 .ipad.weather #clock { border-bottom-left-radius: 0;border-bottom-right-radius: 0 }
 .ipad.weather #forecast {  border-top-left-radius: 0; border-top-right-radius: 0 }
-
-.ipad.weather.landscape #clock { margin-top: 150px; }
-.ipad.weather.landscape #forecast {  margin-top: 297px; }
-.ipad.weather.portrait #clock { margin-top: 250px; }
-.ipad.weather.portrait #forecast {  margin-top: 397px; }
+.ipad .swipe {width: 768px; height: 692px; display:table;}
+.ipad .swipe-wrap { display:table-cell; vertical-align:middle; }
 
 #error { display: none; text-align: center; padding: 15px 15px 13px 15px; margin-left:auto;margin-right:auto; width: 270px; font-family:'source_code_prosemibold'; font-size: 14px; }
