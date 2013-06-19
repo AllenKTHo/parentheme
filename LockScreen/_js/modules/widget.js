@@ -345,7 +345,7 @@ var widget = new function() {
 		_this.setLanguage();
 		_this.updateClock();
 		
-		if( _this.device == 'ipad' || ( Settings.widgetLayout == 'single-page' && Settings.weatherLength > 8 ) )
+		if( _this.device != 'ipad' && Settings.widgetLayout == 'single-page' && Settings.weatherLength > 8 )
 			Settings.weatherLength = 8;
 		
 		if( _this.device != 'ipad' && Settings.widgetLayout != 'single-page' ) {
