@@ -1,4 +1,4 @@
-// By by Patrick Loewer and Andreas Larsen
+// () LS By Patrick Loewer and Andreas Larsen
 // Weather forecast from <http://yr.no>, delivered by the Norwegian Meteorological Institute and the NRK
 
 var Settings = new function() {
