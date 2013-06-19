@@ -1,0 +1,66 @@
+@font-face { font-family:source_code_problack;src:url(sourcecodepro.svg#source_code_problack) format(svg); }
+@font-face { font-family:source_code_prosemibold;src:url(sourcecodepro.svg#source_code_prosemibold) format(svg); }
+
+body { background-image:url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg'); background-repeat:no-repeat; font-family:source_code_problack; margin:0; padding:0; }
+
+#forecast, #clock { width: 320px; margin: 0 auto; }
+
+#time { font-size:87px;margin:0 auto -12px auto;text-align: center; }
+#date { font-size:48px;margin:0 auto 0 auto; text-align: center; }
+
+#weather, #weather tr, #weather th, #weather td, table { font-family:'source_code_prosemibold'; font-size: 20px; text-align: right; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; }
+#forecast small { font-size: 11px; }
+#forecast xs { font-size: 5px; }
+#forecast table { margin: 0px auto 10px auto; width: 280px; padding-left: 3px; }
+#forecast th { width:20px; }
+#forecast tr { display:block; height:32px; }
+#forecast img {margin-bottom: -2px;}
+
+#forecast .image { width:53px; }
+#forecast .image img { width: 38px; height: 38px; }
+#forecast .ned { width:53px; }
+#forecast .plus { width:60px; }
+#forecast .minus { width:50px; }
+#forecast .v { width: 30px; }
+#forecast .v img { width: 20px; height: 38px; }
+#forecast .ms { width:50px; }
+
+#clock, #forecast, .single-page.translucent .swipe-wrap { border-radius: 10px; }
+#clock { width: 300px; padding: 5px 0; }
+#forecast { width: 300px; padding-bottom: 2px; }
+
+body.iphone-4 { height: 480px; width: 320px; background-size:320px 480px; }
+body.iphone-5 { height: 568px; width: 320px; background-size:320px 568px; }
+body.ipad.portrait { height: 1024px; width: 768px; background-size:768px 1024px; }
+body.ipad.landscape { height: 768px; width: 1024px; background-size:1024px 768px; }
+
+.white { color: #FFF; }
+.black { color: #000; }
+.two-page.white.translucent #clock, .two-page.white.translucent #forecast, .single-page.ipad.white.translucent #clock, .single-page.ipad.white.translucent #forecast, .single-page.iphone-5.white.translucent .swipe-wrap, .single-page.iphone-4.white.translucent .swipe-wrap { background-color: rgba(0, 0, 0, 0.6) }
+.two-page.black.translucent #clock, .two-page.black.translucent #forecast, .single-page.ipad.black.translucent #clock, .single-page.ipad.black.translucent #forecast, .single-page.iphone-5.black.translucent .swipe-wrap, .single-page.iphone-4.black.translucent .swipe-wrap { background-color: rgba(255, 255, 255, 0.6) }
+
+.middle { display:table; }
+.cell { display:table-cell; vertical-align:middle; }
+.swipe, .swipe-wrap, .middle, .cell { height:100%; }
+
+.swipe { overflow: hidden; visibility: hidden; position: relative;  }
+.swipe-wrap { overflow: hidden; position: relative; }
+.swipe-wrap > div { float:left; width:100%; position: relative; }
+
+.single-page .swipe { visibility: visible; }
+.single-page .middle, .single-page .cell, .single-page .swipe-wrap { height: auto; }
+.single-page .swipe-wrap { margin: 40px 10px 10px 10px; }
+.single-page.iphone-5 .swipe-wrap { margin-top: 85px; }
+.single-page.ipad .swipe-wrap { margin: auto; height: 100%; }
+
+.ipad.no-weather .middle, .ipad.no-weather .cell { height: 100%; }
+.ipad.weather .swipe-wrap > div { position: absolute; }
+.ipad.weather #clock { border-bottom-left-radius: 0;border-bottom-right-radius: 0 }
+.ipad.weather #forecast {  border-top-left-radius: 0; border-top-right-radius: 0 }
+
+.ipad.weather.landscape #clock { margin-top: 150px; }
+.ipad.weather.landscape #forecast {  margin-top: 297px; }
+.ipad.weather.portrait #clock { margin-top: 250px; }
+.ipad.weather.portrait #forecast {  margin-top: 397px; }
+
+#error { display: none; text-align: center; padding: 15px 15px 13px 15px; margin-left:auto;margin-right:auto; width: 270px; font-family:'source_code_prosemibold'; font-size: 14px; }
