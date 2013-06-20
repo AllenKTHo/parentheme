@@ -35,8 +35,8 @@ body.ipad { height: 1024px; width: 1024px; background-size:1024px 1024px; }
 
 .white { color: #FFF; }
 .black { color: #000; }
-.two-page.white.translucent #clock, .two-page.white.translucent #forecast, .single-page.ipad.white.translucent #clock, .single-page.ipad.white.translucent #forecast, .single-page.iphone-5.white.translucent .swipe-wrap, .single-page.iphone-4.white.translucent .swipe-wrap { background-color: rgba(0, 0, 0, 0.6) }
-.two-page.black.translucent #clock, .two-page.black.translucent #forecast, .single-page.ipad.black.translucent #clock, .single-page.ipad.black.translucent #forecast, .single-page.iphone-5.black.translucent .swipe-wrap, .single-page.iphone-4.black.translucent .swipe-wrap { background-color: rgba(255, 255, 255, 0.6) }
+.two-page.white.translucent #clock, .two-page.white.translucent #forecast, .single-page.ipad.white.translucent #clock, .single-page.ipad.white.weather.translucent #forecast, .single-page.iphone-5.white.translucent .swipe-wrap, .single-page.iphone-4.white.translucent .swipe-wrap { background-color: rgba(0, 0, 0, 0.6) }
+.two-page.black.translucent #clock, .two-page.black.translucent #forecast, .single-page.ipad.black.translucent #clock, .single-page.ipad.black.weather.translucent #forecast, .single-page.iphone-5.black.translucent .swipe-wrap, .single-page.iphone-4.black.translucent .swipe-wrap { background-color: rgba(255, 255, 255, 0.6) }
 
 .middle { display:table; }
 .cell { display:table-cell; vertical-align:middle; }
