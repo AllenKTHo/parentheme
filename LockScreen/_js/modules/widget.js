@@ -165,6 +165,10 @@ var widget = new function() {
 			var timeDate = new Date(info['time']);
 			var timeHours = timeDate.getHours();
 			
+			if( timeHours > 12 && Settings.clockFormat == '12' ) {
+				timeHours = timeHours - 12;  // 12 hour mode!
+			}
+			
 			var timeRow = document.createElement('th');
 			var timeText = document.createTextNode( timeHours < 10 ? '0' + timeHours : timeHours );
 			timeRow.appendChild(timeText);
