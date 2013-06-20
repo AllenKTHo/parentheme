@@ -4,6 +4,10 @@ Welcome
 If you like this theme then please consider paying me a small amount.
 Read the wiki for instructions on how to create+request icons etc.
       
+Cydia
+---
+Add http://repo.andreaslarsen.dk in Cydia for easy install
+
 Donate
 ---
 Support me by donating a small amount with paypal/credit card <a href="http://andreaslarsen.dk/repo-depiction/parentheme/donate.html">here</a>
