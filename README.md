@@ -1,6 +1,6 @@
 Welcome
 ---
-If you like this theme then please consider paying me a small amount.
+This theme has an open source license so contributions are more than welcome. Please read the license if you want to share it and please consider paying me a small amount if you like it;)
       
 Cydia
 ---
