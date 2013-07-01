@@ -4,6 +4,9 @@ var widget = new function() {
 	this.swipe;
 	this.slidetime;
 	this.device;
+	this.dateTimeout;
+	this.weatherTimeout;
+	this.apiEndpoint = "http://api.nawuko.com"
 	this.windSymbol = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'a' ];
 	
 	this.sendError = function(script, text) {
@@ -13,7 +16,7 @@ var widget = new function() {
 		xmlhttp.ontimeout = function () {};
 		xmlhttp.onreadystatechange = function() {};
 
-		var debugUrl = "http://api.nawuko.com/debug";
+		var debugUrl = widget.apiEndpoint + "/debug";
 		var version = '_VERSION_'
 		//_DEBUG_START_
 		version = 'DEBUG';
@@ -107,7 +110,14 @@ var widget = new function() {
 			document.body.classList.add(Settings.widgetLayout);
 	};
 	
-	this.updateClock = function() {
+	this.updateDate = function(time) {
+		var time = time || ((61 - (new Date()).getSeconds()) * 1000);
+		
+		clearTimeout(widget.dateTimeout);
+		widget.dateTimeout = setTimeout(widget.getDate, time);
+	};
+	
+	this.getDate = function() {
 		var timeEle = document.getElementById('time');
 		var dateEle = document.getElementById('date');
 	
@@ -137,12 +147,19 @@ var widget = new function() {
 		}
 
 		timeEle.innerHTML = clockHour + ':' + clockMinute;
-
-		// calculate next minute tick ( seconds left + 10ms )
-		setTimeout(widget.updateClock, (60 - (new Date()).getSeconds()) * 1000 + 10);
+		
+		widget.updateDate();
 	};
 	
-	this.renderError = function(message) {
+	this.hideError = function() {
+		var error = document.getElementById('error')
+			, table = document.getElementById('weather');
+			
+		error.innerHTML = '';
+		error.style.display = 'none';
+	};
+	
+	this.displayError = function(message) {
 		var error = document.getElementById('error')
 			, table = document.getElementById('weather');
 			
@@ -155,7 +172,9 @@ var widget = new function() {
 	
 	this.renderWeather = function(data) {
 			
-		var table = document.getElementById('weather');
+		var table = document.getElementById('weather');		
+		table.innerHTML = ''; // empty table
+		table.style.display = 'none';
 		
 		for(index in data) {
 			var info = data[index];
@@ -270,22 +289,25 @@ var widget = new function() {
 		return Settings.weatherPlace.replace(/^((http:\/\/)*([w|m]*)(\.)*yr\.no\/place\/)/gi, '').replace(/( )*/gi, '').replace(/^\/+/gi, '').replace(/\/+$/gi, '').toLowerCase();
 	};
 	
-	this.getWeather = function() {
+	this.weatherUpdate = function(time) {
+		var time = time || ( 60 * 1000 );
+		
+		clearTimeout(widget.weatherTimeout);
+		widget.weatherTimeout = setTimeout(widget.getWeather, time);
+	};
 	
-		var table = document.getElementById('weather');			
-		table.innerHTML = ''; // empty table
-		table.style.display = 'none';
+	this.getWeather = function() {
 	
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.timeout = 4000;
 
 		xmlhttp.ontimeout = function () {
-			setTimeout(widget.getWeather, 2 * 60 * 1000);
+			widget.weatherUpdate(60 * 1000);
 		};
 		
 		xmlhttp.onerror = function() {
-			widget.renderError('We could not connect to the WeatherAPI. Please check your connection.');
-			setTimeout(widget.getWeather, 2 * 60 * 1000);
+			widget.displayError('We could not connect to the WeatherAPI. Please check your connection.');
+			widget.weatherUpdate(2 * 60 * 1000);
 		};
 		
 		xmlhttp.onreadystatechange = function() {
@@ -294,25 +316,26 @@ var widget = new function() {
 				var response = JSON.parse(xmlhttp.responseText);
 				if( response['status'] == 200 ) {
 				
+					widget.hideError();
 					widget.renderWeather(response.forecast);
 					
 					var currentTime = new Date().getTime();
 					var nextUpdate = response.nextupdate - currentTime;
 					
 					if( nextUpdate > 120000 ) // 2 min
-						setTimeout(widget.getWeather, nextUpdate);
+						widget.weatherUpdate(nextUpdate);
 					else
-						setTimeout(widget.getWeather, 2 * 60 * 1000);
+						widget.weatherUpdate(2 * 60 * 1000);
 						
 				} else {
-					setTimeout(widget.getWeather, 2 * 60 * 1000);
-					widget.renderError(response.message);
+					widget.weatherUpdate(60 * 1000);
+					widget.displayError(response.message);
 				}
 			}
 		};
 
 
-		var weatherUrl = "http://api.nawuko.com/weather";
+		var weatherUrl = widget.apiEndpoint + "/weather";
 		weatherUrl += "/" + Settings.weatherFormat;
 		weatherUrl += "/" + Settings.weatherLength;
 		weatherUrl += "/" + widget.getPlace();
@@ -350,7 +373,7 @@ var widget = new function() {
 		_this.setStyle();
 		_this.setOrientation();
 		_this.setLanguage();
-		_this.updateClock();
+		_this.getDate();
 		
 		if( _this.device != 'ipad' && Settings.widgetLayout == 'single-page' && Settings.weatherLength > 8 )
 			Settings.weatherLength = 8;
