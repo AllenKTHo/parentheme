@@ -6,32 +6,8 @@ var widget = new function() {
 	this.device;
 	this.dateTimeout;
 	this.weatherTimeout;
-	this.apiEndpoint = "http://api.nawuko.com"
+	this.apiEndpoint = "https://api.nitx.de"
 	this.windSymbol = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'a' ];
-	
-	this.sendError = function(script, text) {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.timeout = 4000;
-
-		xmlhttp.ontimeout = function () {};
-		xmlhttp.onreadystatechange = function() {};
-
-		var debugUrl = widget.apiEndpoint + "/debug";
-		var version = '_VERSION_'
-		//_DEBUG_START_
-		version = 'DEBUG';
-		//_DEBUG_END_
-		var report = {
-			'function': script,
-			'endpoint': '/LockScreen',
-			'error': text,
-			'version': version
-		};
-
-		xmlhttp.open("POST", debugUrl, true);
-		xmlhttp.setRequestHeader("Content-type","application/json"); 
-		xmlhttp.send(JSON.stringify(report));
-	};
 	
 	this.setLanguage = function() {
 		switch(Settings.widgetLang) {
@@ -159,7 +135,7 @@ var widget = new function() {
 		error.style.display = 'none';
 	};
 	
-	this.displayError = function(message) {
+	this.displayMessage = function(message) {
 		var error = document.getElementById('error')
 			, table = document.getElementById('weather');
 			
@@ -297,25 +273,27 @@ var widget = new function() {
 	};
 	
 	this.getWeather = function() {
+		var weatherUrl, client, timeout;
 	
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.timeout = 4000;
+		weatherUrl = widget.apiEndpoint + "/weather";
+		weatherUrl += "/" + Settings.weatherFormat;
+		weatherUrl += "/" + Settings.weatherLength;
+		weatherUrl += "/" + widget.getPlace();
+		weatherUrl += "?random=" + widget.randomString();
+	
+		client = new XMLHttpRequest();
 
-		xmlhttp.ontimeout = function () {
-			widget.weatherUpdate(60 * 1000);
-		};
+		client.open("GET", weatherUrl, true);
+		client.setRequestHeader('Client', 'Parentheme widget _VERSION_');
 		
-		xmlhttp.onerror = function() {
-			widget.displayError('We could not connect to the WeatherAPI. Please check your connection.');
-			widget.weatherUpdate(2 * 60 * 1000);
-		};
-		
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				var response = JSON.parse(xmlhttp.responseText);
-				if( response['status'] == 200 ) {
-				
+		client.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+
+				clearTimeout(timeout);
+
+				var response = JSON.parse(this.responseText) || this.responseText;
+			
+				if( response.code && response.code == 'ok' ) {
 					widget.hideError();
 					widget.renderWeather(response.forecast);
 					
@@ -325,31 +303,35 @@ var widget = new function() {
 					if( nextUpdate > 120000 ) // 2 min
 						widget.weatherUpdate(nextUpdate);
 					else
-						widget.weatherUpdate(2 * 60 * 1000);
+						widget.weatherUpdate(2 * 60 * 1000);		
 						
-				} else {
-					widget.weatherUpdate(60 * 1000);
-					widget.displayError(response.message);
+				} else if( response.code && response.code == 'LocationNotFound' ) {
+					widget.displayMessage('Location not found. Please check your weather settings');
+				} else if( response.code && response.code == 'InternalError' ) {
+					widget.weatherUpdate(2 * 60 * 1000);
+					widget.displayMessage('An error has occurred. Will try again in few minutes');
 				}
+			} else if (this.readyState == 4) {
+				clearTimeout(timeout);
+				widget.weatherUpdate(2 * 60 * 1000);
+				widget.displayMessage('An error has occurred. Will try again in few minutes');
 			}
 		};
-
-
-		var weatherUrl = widget.apiEndpoint + "/weather";
-		weatherUrl += "/" + Settings.weatherFormat;
-		weatherUrl += "/" + Settings.weatherLength;
-		weatherUrl += "/" + widget.getPlace();
-		weatherUrl += "?_r=" + widget.randomString();
-		weatherUrl += "&_v=_VERSION_";
 		
-		xmlhttp.open('GET', weatherUrl, true);
-		xmlhttp.send();
+		widget.displayMessage('Loading ...');
+		client.send();
+		
+		timeout = setTimeout(function() {
+			client.abort();
+			widget.displayMessage('Could not Connect to the WeatherAPI. Will try again in 60 Seconds');
+			widget.weatherUpdate(60 * 1000);
+		}, 8000);
 	};
 	
 	this.load = function() {
 		document.body.style.backgroundImage = "url('/var/mobile/Library/SpringBoard/Converted-LockBackground.jpg?_r=" + _this.randomString() + "')";
 		//_DEBUG_START_					
-			document.body.style.backgroundImage = "url('//cdn.nawuko.com/images/LockBackground_iPhone5.png')";
+			document.body.style.backgroundImage = "url('//cdn.nitx.de/images/LockBackground_iPhone5.png')";
 		//_DEBUG_END_
 		var loadScript = document.createElement('script'); loadScript.type = 'text/javascript'; loadScript.async = false; loadScript.src = 'options.js?_r=' + _this.randomString();
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(loadScript, s);
@@ -393,10 +375,6 @@ var widget = new function() {
 			_this.swipe && _this.swipe.kill();
 		}
 	}
-}
-
-window.onerror = function(message, url, lineNumber) {
-	widget.sendError('jsError', message + ' on line ' + lineNumber);
 };
 
 window.addEventListener('DOMContentLoaded', widget.load);
